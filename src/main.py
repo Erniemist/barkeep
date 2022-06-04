@@ -5,6 +5,7 @@ import Utilities
 import discord
 
 intents = discord.Intents.default()
+# noinspection PyUnresolvedReferences, PyDunderSlots
 intents.message_content = True
 
 test_server = {'id': 583862568049967164}
