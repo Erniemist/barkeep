@@ -1,6 +1,7 @@
 Chilled blood in a wine glass
 Goblin Spit
-Pepsi Max
+Pepsi Max,Pepsi Maxx,Pepperoni Max,Popsi
+Coca Cola,Coka Kola,cola,Cocaine Cola
 Bloody Mary
 Moscow Mule
 Cape Codder
@@ -12,12 +13,11 @@ Sea Breeze
 Hairy Navel
 Melon Ball
 Vodka Red Bull
-Jack and Coke
+Jack and Coke,Jack and Pepsi
 Lynchburg Lemonade
 Scotch and Soda
 Seven and Seven
 Whiskey and Ginger
-Whiskey Highball
 John Collins
 Gin and Tonic
 Gin Rickey
@@ -67,14 +67,14 @@ Buffalo Butt Beer
 Bone Hurting Juice
 Mamma Mia Pizza Beer
 Premium Bacon Flavored Vodka
-Blue-Flavored Soda
+Blue-Flavored Soda,Green-Flavored Soda,Red-Flavored Soda,Black-Flavored Soda,White-Flavored Soda
 Overpriced Wine You Only Buy to Look Fancy
 Fruit Loops Vodka
 Wasabi Vodka
 Electricity Vodka
 Cheap Boxed Wine
-Crystal Pepsi
-New Coke
+Crystal Pepsi,Crystal... Pepsi
+New Coke,Neocoke
 Orbitz
 Hubba Bubba Original Bubble Gum Soda
 Klatchian Coffee
