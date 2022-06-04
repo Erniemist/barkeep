@@ -24,7 +24,7 @@ async def on_member_remove(member):
 
 @bot.event
 async def on_ready():
-    print(f"We have logged in as {bot.user}")
+    print(f"{bot.user} at your service")
 
 
 @bot.slash_command(guild_ids=[test_server_id, server_id])
