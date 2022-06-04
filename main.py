@@ -1,4 +1,8 @@
-import discord, Drink, Suggestions, Utilities
+import Drink
+import Suggestions
+import Token
+import Utilities
+import discord
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -48,7 +52,4 @@ async def suggest(ctx, suggestion: str):
     await ctx.respond("I'll take a note of that.")
 
 
-with open('token.txt', 'r') as token_file:
-    token = token_file.readline().strip()
-
-bot.run(token)
+bot.run(Token.get_token())
