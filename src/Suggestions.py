@@ -1,6 +1,9 @@
+path = '..\\data\\suggestions.txt'
+
+
 def add_suggestion(suggestion):
-    with open('../data/suggestions.txt', 'a') as suggestions_file:
-        suggestions_file.write(f'{get_next_id()}: {suggestion}' + '\n')
+    with open(path, 'a') as f:
+        f.write(f'{get_next_id()}: {suggestion}' + '\n')
 
 
 def get_next_id():
@@ -8,7 +11,7 @@ def get_next_id():
 
 
 def get_latest_id():
-    with open('../data/suggestions.txt', 'r') as suggestions_file:
-        last_line = list(suggestions_file.readlines())[-1]
+    with open(path, 'r') as f:
+        last_line = list(f.readlines())[-1]
     message_id, message = last_line.split(': ')
     return int(message_id)
