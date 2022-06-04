@@ -1,24 +1,40 @@
 import random
 from functools import lru_cache
+from dataclasses import dataclass
 
 
-def get_drink() -> tuple[str, str]:
-    return get_article(random.choice(random.choice(get_drinks())))
+@dataclass
+class Drink:
+    article: str
+    name: str
+
+
+def get_drink() -> Drink:
+    return random.choice(random.choice(get_drink_variants()))
 
 
 @lru_cache(1)
-def get_drinks() -> list[list[str]]:
+def get_drink_variants():
+    return [
+        [
+            hydrate(drink_text.strip('\n'))
+            for drink_text in drink_line.split(',')
+        ]
+        for drink_line in get_drink_lines()
+    ]
+
+
+def hydrate(drink_text: str) -> Drink:
+    if '|' in drink_text:
+        article, separator, name = drink_text.partition('|')
+    else:
+        article, name = 'an' if drink_text[0] in 'aeiou' else 'a', drink_text
+
+    return Drink(article, name)
+
+
+def get_drink_lines() -> list[str]:
     with open('..\\data\\drinks.txt', 'r') as f:
-        return [get_all_drinks_for_line(line) for line in f.readlines()]
+        return list(f.readlines())
 
 
-def get_all_drinks_for_line(line: str) -> list[str]:
-    return line.strip('\n').split(',')
-
-
-def get_article(drink: str) -> tuple[str, str]:
-    if '|' in drink:
-        article, separator, drink_name = drink.partition('|')
-        return article, drink_name
-
-    return 'an' if drink[0] in 'aeiou' else 'a', drink
