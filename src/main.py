@@ -43,7 +43,8 @@ async def hello(ctx):
 
 @bot.slash_command(description='Barkeep will recommend you a drink', guild_ids=server_ids)
 async def drink(ctx):
-    await ctx.respond(f'Might I suggest a {Drink.get_drink()}?')
+    article, drink_name = Drink.get_drink()
+    await ctx.respond(f'Might I suggest {article} {drink_name}?')
 
 
 @bot.slash_command(description='Make a suggestion to improve the bot', guild_ids=server_ids)
