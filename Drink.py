@@ -1,11 +1,13 @@
 import random
-
-drinks = []
+from functools import lru_cache
 
 
 def get_drink():
-    global drinks
-    if len(drinks) == 0:
-        with open('drinks.txt', 'r') as drinks_file:
-            drinks = [line.strip('\n') for line in drinks_file.readlines() if line != '\n']
-    return random.choice(drinks)
+    return random.choice(get_drinks())
+
+
+@lru_cache(1)
+def get_drinks():
+    with open('drinks.txt', 'r') as drinks_file:
+        drinks = [line.strip('\n') for line in drinks_file.readlines() if line != '\n']
+    return drinks
