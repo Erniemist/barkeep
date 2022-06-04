@@ -1,4 +1,4 @@
-import discord, Drink, Suggestions
+import discord, Drink, Suggestions, Utilities
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -44,8 +44,7 @@ async def drink(ctx):
 
 @bot.slash_command(guild_ids=server_ids)
 async def suggest(ctx, suggestion: str):
-    safe_chars = 'abcdefghijklmnopqrstuvwxyz '
-    Suggestions.add_suggestion(str.join('', [char for char in suggestion.lower() if char in safe_chars]))
+    Suggestions.add_suggestion(Utilities.sanitise(suggestion))
     await ctx.respond("I'll take a note of that.")
 
 
