@@ -1,6 +1,6 @@
 import Drink
 import Suggestions
-import Token
+from src import Token
 import Utilities
 import discord
 
