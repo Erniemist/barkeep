@@ -9,5 +9,5 @@ def get_drink():
 @lru_cache(1)
 def get_drinks():
     with open('drinks.txt', 'r') as drinks_file:
-        drinks = [line.strip('\n') for line in drinks_file.readlines() if line != '\n']
+        drinks = [line.strip('\n') for line in drinks_file.readlines()]
     return drinks
