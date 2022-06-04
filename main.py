@@ -1,5 +1,4 @@
-import discord
-import Drink
+import discord, Drink, Suggestions
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -36,6 +35,13 @@ async def hello(ctx):
 @bot.slash_command(guild_ids=[test_server_id, server_id])
 async def drink(ctx):
     await ctx.respond(f'Might I suggest a {Drink.get_drink()}?')
+
+
+@bot.slash_command(guild_ids=[test_server_id, server_id])
+async def suggest(ctx, suggestion: str):
+    safe_chars = 'abcdefghijklmnopqrstuvwxyz '
+    Suggestions.add_suggestion(str.join('', [char for char in suggestion.lower() if char in safe_chars]))
+    await ctx.respond("I'll take a note of that.")
 
 
 with open('token.txt', 'r') as token_file:
