@@ -10,7 +10,11 @@ def get_drink() -> tuple[str, str]:
 @lru_cache(1)
 def get_drinks() -> list[list[str]]:
     with open('..\\data\\drinks.txt', 'r') as f:
-        return [line.strip('\n').split(',') for line in f.readlines()]
+        return [get_all_drinks_for_line(line) for line in f.readlines()]
+
+
+def get_all_drinks_for_line(line: str) -> list[str]:
+    return line.strip('\n').split(',')
 
 
 def get_article(drink: str) -> str:
