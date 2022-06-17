@@ -3,16 +3,21 @@ import Suggestions
 from src import Token
 import Utilities
 import discord
+from discord.utils import get
+
 
 intents = discord.Intents.default()
 # noinspection PyUnresolvedReferences, PyDunderSlots
 intents.message_content = True
+intents.reactions = True
 
-test_server = {'id': 583862568049967164}
+test_server = {
+    'id': 583862568049967164,
+}
 nook_and_cranny = {
     'id': 773225381331206156,
     'channels': {
-        'general': 773225381331206159
+        'general': 773225381331206159,
     },
 }
 
@@ -52,6 +57,19 @@ async def get_drink(ctx):
 async def suggest(ctx, suggestion: str):
     Suggestions.add_suggestion(Utilities.sanitise(suggestion))
     await ctx.respond("I'll take a note of that.")
+
+
+@bot.event
+async def on_raw_reaction_add(event):
+    if event.emoji.name != '⭐':
+        return
+    channel = bot.get_channel(event.channel_id)
+    message = await channel.fetch_message(event.message_id)
+    reaction = get(message.reactions, emoji=event.emoji.name)
+    if reaction.count == 3:
+        guild_name = bot.get_guild(event.guild_id).name
+        hall_of_fame = get(bot.get_all_channels(), guild__name=guild_name, name='hall-of-fame')
+        await hall_of_fame.send(message.content + '\n' + message.jump_url)
 
 
 bot.run(Token.get_token())
