@@ -9,21 +9,6 @@ class Drink:
     name: str
 
 
-def get_drink() -> Drink:
-    return random.choice(random.choice(get_drink_variants()))
-
-
-@lru_cache(1)
-def get_drink_variants():
-    return [
-        [
-            hydrate(drink_text.strip('\n'))
-            for drink_text in drink_line.split(',')
-        ]
-        for drink_line in get_drink_lines()
-    ]
-
-
 def hydrate(drink_text: str) -> Drink:
     if '|' in drink_text:
         article, separator, name = drink_text.partition('|')
@@ -33,8 +18,24 @@ def hydrate(drink_text: str) -> Drink:
     return Drink(article, name)
 
 
-def get_drink_lines() -> list[str]:
+def read_drinks_list() -> list[str]:
     with open('..\\data\\drinks.txt', 'r') as f:
         return list(f.readlines())
 
 
+class DrinkRepository:
+    def __init__(self, drinks_list=None):
+        self.drinks_list = drinks_list if drinks_list is not None else read_drinks_list()
+
+    def get_drink(self) -> Drink:
+        return random.choice(random.choice(self.get_drink_variants()))
+
+    @lru_cache(1)
+    def get_drink_variants(self):
+        return [
+            [
+                hydrate(drink_text.strip('\n'))
+                for drink_text in drink_line.split(',')
+            ]
+            for drink_line in self.drinks_list
+        ]
