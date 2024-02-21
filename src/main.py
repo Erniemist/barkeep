@@ -9,13 +9,6 @@ from discord.ext.commands import Bot
 from discord.utils import get
 
 
-nook_and_cranny = {
-    'channels': {
-        'general': 773225381331206159,
-    },
-}
-
-
 class Client(discord.Client):
     def __init__(self, *, intents: discord.Intents):
         super().__init__(intents=intents)
