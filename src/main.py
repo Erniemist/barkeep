@@ -9,30 +9,28 @@ from discord.ext.commands import Bot
 from discord.utils import get
 
 
-test_server = {
-    'id': 583862568049967164,
-}
 nook_and_cranny = {
-    'id': 773225381331206156,
     'channels': {
         'general': 773225381331206159,
     },
 }
 
 
-class MyClient(discord.Client):
+class Client(discord.Client):
     def __init__(self, *, intents: discord.Intents):
         super().__init__(intents=intents)
         self.tree = app_commands.CommandTree(self)
+        with open('..\\server_id.txt', 'r') as f:
+            server_id = f.readline().strip()
+
+        self.server = discord.Object(server_id)
 
     async def setup_hook(self):
-        for guild_id in (test_server['id'], nook_and_cranny['id']):
-            guild = discord.Object(id=guild_id)
-            self.tree.copy_global_to(guild=guild)
-            await self.tree.sync(guild=guild)
+        self.tree.copy_global_to(guild=self.server)
+        await self.tree.sync(guild=self.server)
 
 
-client = MyClient(intents=discord.Intents.default())
+client = Client(intents=discord.Intents.default())
 
 
 @client.event
