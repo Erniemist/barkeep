@@ -34,7 +34,7 @@ def hydrate(drink_text: str) -> Drink:
 
 
 def get_drink_lines() -> list[str]:
-    with open('..\\data\\drinks.txt', 'r') as f:
+    with open('../data/drinks.txt', 'r') as f:
         return list(f.readlines())
 
 
