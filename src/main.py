@@ -49,6 +49,6 @@ async def suggest(interaction: discord.Interaction, suggestion: str):
     await interaction.response.send_message("I'll take a note of that.")
 
 
-with open('..\\token.txt', 'r') as f:
+with open('../token.txt', 'r') as f:
     token = f.readline().strip()
 client.run(token)
