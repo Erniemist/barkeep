@@ -11,7 +11,6 @@ def read_drinks_list() -> list[str]:
 
 class DrinkRepository:
     def __init__(self, drinks_list=None):
-        print('hi')
         self.drinks_list = drinks_list if drinks_list is not None else read_drinks_list()
 
     @classmethod
