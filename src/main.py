@@ -26,10 +26,10 @@ class MyClient(discord.Client):
         self.tree = app_commands.CommandTree(self)
 
     async def setup_hook(self):
-        guild = discord.Object(id=test_server['id'])
-
-        self.tree.copy_global_to(guild=guild)
-        await self.tree.sync(guild=guild)
+        for guild_id in (test_server['id'], nook_and_cranny['id']):
+            guild = discord.Object(id=guild_id)
+            self.tree.copy_global_to(guild=guild)
+            await self.tree.sync(guild=guild)
 
 
 client = MyClient(intents=discord.Intents.default())
