@@ -3,6 +3,7 @@ import Suggestions
 from src import Token
 import Utilities
 import discord
+from discord.ext.commands import Bot
 from discord.utils import get
 
 
@@ -23,7 +24,7 @@ nook_and_cranny = {
 
 server_ids = [test_server['id'], nook_and_cranny['id']]
 
-bot = discord.Bot(intents=intents)
+bot = Bot(intents=intents, command_prefix='-')
 
 
 @bot.event
