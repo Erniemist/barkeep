@@ -1,83 +1,83 @@
-some|Chilled blood in a wine glass
-Goblin Spit
-Pepsi Max,Pepsi Maxx,Pepperoni Max,Popsi
-Coca Cola,Coka Kola,cola,Cocaine Cola
-Bloody Mary
-Moscow Mule
-Cape Codder
-Greyhound
-Screwdriver
-Bay Breeze
-Madras
-Sea Breeze
-Hairy Navel
-Melon Ball
-Vodka Red Bull
-Jack and Coke,Jack and Pepsi
-Lynchburg Lemonade
-Scotch and Soda
-Seven and Seven
-Whiskey and Ginger
-John Collins
-Gin and Tonic
-Gin Rickey
-Rum and Coke
-Dark and Stormy
-Tequila Sunrise
-Paloma
-Black and Tan
-Long Island Iced Tea
-Smith and Kearns
-Kahlua on the rocks
-Black Russian
-White Russian
-Brave Bull
-Colorado Bulldog
-Mudslide
-French Connection
-Godfather
-Godmother
-Nutty Irishman
-Peppermint Patty
-Nuts and Berries
-California Surfer
-Caipirinha
-Mint Julep
-Mojito
-Old-fashioned
-Irish Slammer
-Boilermaker
-Red Snapper
-Snake Bite
-Three Wise Men
-Washington Apple
-Lemon Drop
-Mind Eraser
-Kamikaze
-Chocolate Cake
-Raspberry Gimlet
-Daiquiri
-Hurricane
-Blue Hawaiian
-Mai Tai
-Rum Runner
-Margarita
-Buffalo Butt Beer
-some|Bone Hurting Juice
-Mamma Mia Pizza Beer
-Premium Bacon Flavored Vodka
-Blue-Flavored Soda,Green-Flavored Soda,Red-Flavored Soda,Black-Flavored Soda,White-Flavored Soda
-some|overpriced wine you only buy to look fancy
-some|Fruit Loops Vodka
-some|Wasabi Vodka
-some|Electricity Vodka
-some|Cheap Boxed Wine
-Crystal Pepsi,Crystal... Pepsi
-New Coke,Neocoke
-Orbitz
-Hubba Bubba Original Bubble Gum Soda
-some|Klatchian Coffee
-Nuka-Cola
-Pan-Galactic Gargle Blaster
-The|"Drink Me!" Potion
-some|Saliva-fermented Sake
+some chilled blood in a wine glass
+a Goblin Spit
+a Pepsi Max,a Pepsi Maxx,a Pepperoni Max,a Popsi
+a Coca Cola,a Coka Kola,a cola,a Cocaine Cola
+a Bloody Mary
+a Moscow Mule
+a Cape Codder
+a Greyhound
+a Screwdriver
+a Bay Breeze
+a Madras
+a Sea Breeze
+a Hairy Navel
+a Melon Ball
+a Vodka Red Bull
+a Jack and Coke,a Jack and Pepsi
+a Lynchburg Lemonade
+a Scotch and Soda
+a Seven and Seven
+a Whiskey and Ginger
+a John Collins
+a Gin and Tonic
+a Gin Rickey
+a Rum and Coke
+a Dark and Stormy
+a Tequila Sunrise
+a Paloma
+a Black and Tan
+a Long Island Iced Tea
+a Smith and Kearns
+a Kahlua on the rocks
+a Black Russian
+a White Russian
+a Brave Bull
+a Colorado Bulldog
+a Mudslide
+a French Connection
+a Godfather
+a Godmother
+a Nutty Irishman
+a Peppermint Patty
+a Nuts and Berries
+a California Surfer
+a Caipirinha
+a Mint Julep
+a Mojito
+an Old-fashioned
+a Irish Slammer
+a Boilermaker
+a Red Snapper
+a Snake Bite
+a Three Wise Men
+a Washington Apple
+a Lemon Drop
+a Mind Eraser
+a Kamikaze
+a Chocolate Cake
+a Raspberry Gimlet
+a Daiquiri
+a Hurricane
+a Blue Hawaiian
+a Mai Tai
+a Rum Runner
+a Margarita
+a Buffalo Butt Beer
+some Bone Hurting Juice
+a Mamma Mia Pizza Beer
+a Premium Bacon Flavored Vodka
+a Blue-Flavored Soda,a Green-Flavored Soda,a Red-Flavored Soda,a Black-Flavored Soda,a White-Flavored Soda
+some overpriced wine you only buy to look fancy
+some Fruit Loops Vodka
+some Wasabi Vodka
+some Electricity Vodka
+some Cheap Boxed Wine
+a Crystal Pepsi,a Crystal... Pepsi
+a New Coke,a Neocoke
+an Orbitz
+a Hubba Bubba Original Bubble Gum Soda
+some Klatchian Coffee
+a Nuka-Cola
+a Pan-Galactic Gargle Blaster
+the "Drink Me!" Potion
+some Saliva-fermented Sake
