@@ -43,18 +43,18 @@ async def on_ready():
     print(f"{bot.user} at your service")
 
 
-@bot.slash_command(description='Says hello', guild_ids=server_ids)
+@app_command(description='Says hello', guild_ids=server_ids)
 async def hello(ctx):
     await ctx.respond("Hello World.")
 
 
-@bot.slash_command(name='drink', description='Barkeep will recommend you a drink', guild_ids=server_ids)
+@app_command(name='drink', description='Barkeep will recommend you a drink', guild_ids=server_ids)
 async def get_drink(ctx):
     drink = Drink.get_drink()
     await ctx.respond(f'Might I suggest {drink.article} {drink.name}?')
 
 
-@bot.slash_command(description='Make a suggestion to improve the bot', guild_ids=server_ids)
+@app_command(description='Make a suggestion to improve the bot', guild_ids=server_ids)
 async def suggest(ctx, suggestion: str):
     Suggestions.add_suggestion(Utilities.sanitise(suggestion))
     await ctx.respond("I'll take a note of that.")
