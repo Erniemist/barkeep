@@ -1,6 +1,7 @@
 import random
 from functools import lru_cache
 from dataclasses import dataclass
+from typing import Self
 
 
 def read_drinks_list() -> list[str]:
@@ -10,12 +11,18 @@ def read_drinks_list() -> list[str]:
 
 class DrinkRepository:
     def __init__(self, drinks_list=None):
+        print('hi')
         self.drinks_list = drinks_list if drinks_list is not None else read_drinks_list()
+
+    @classmethod
+    @lru_cache(1)
+    def make(cls) -> Self:
+        """Makes a singleton instance of DrinkRepository"""
+        return DrinkRepository()
 
     def get_drink(self) -> str:
         return random.choice(random.choice(self.get_drink_variants()))
 
-    @lru_cache(1)
     def get_drink_variants(self):
         return [
             [
