@@ -2,7 +2,7 @@ from src.Avalon.Roles.Role import Role
 
 
 class Minion(Role):
-    team = "Evil"
+    team = Role.EVIL
     name = "Loathsome Minion of Mordred"
 
     def __init__(self, player):
