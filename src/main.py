@@ -1,6 +1,5 @@
 from discord import app_commands
 
-import Drink
 from Drink import DrinkRepository
 import Suggestions
 from src import Token
