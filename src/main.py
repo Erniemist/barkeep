@@ -1,4 +1,4 @@
-import Drink
+from Drink import DrinkRepository
 import Suggestions
 from src import Token
 import Utilities
@@ -49,8 +49,8 @@ async def hello(ctx):
 
 @bot.slash_command(name='drink', description='Barkeep will recommend you a drink', guild_ids=server_ids)
 async def get_drink(ctx):
-    drink = Drink.get_drink()
-    await ctx.respond(f'Might I suggest {drink.article} {drink.name}?')
+    drink_repository = DrinkRepository()
+    await ctx.respond(f'Might I suggest {drink_repository.get_drink()}?')
 
 
 @bot.slash_command(description='Make a suggestion to improve the bot', guild_ids=server_ids)
