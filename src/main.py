@@ -1,15 +1,14 @@
+from discord import app_commands
+
+import Drink
 from Drink import DrinkRepository
 import Suggestions
 from src import Token
 import Utilities
 import discord
+from discord.ext.commands import Bot
 from discord.utils import get
 
-
-intents = discord.Intents.default()
-# noinspection PyUnresolvedReferences, PyDunderSlots
-intents.message_content = True
-intents.reactions = True
 
 test_server = {
     'id': 583862568049967164,
@@ -21,54 +20,45 @@ nook_and_cranny = {
     },
 }
 
-server_ids = [test_server['id'], nook_and_cranny['id']]
 
-bot = discord.Bot(intents=intents)
+class MyClient(discord.Client):
+    def __init__(self, *, intents: discord.Intents):
+        super().__init__(intents=intents)
+        self.tree = app_commands.CommandTree(self)
+
+    async def setup_hook(self):
+        for guild_id in (test_server['id'], nook_and_cranny['id']):
+            guild = discord.Object(id=guild_id)
+            self.tree.copy_global_to(guild=guild)
+            await self.tree.sync(guild=guild)
 
 
-@bot.event
+client = MyClient(intents=discord.Intents.default())
+
+
+@client.event
 async def on_ready():
-    print(f'Logged on as {bot.user}!')
+    print(f'Logged in as {client.user} (ID: {client.user.id})')
+    print('------')
 
 
-@bot.event
-async def on_member_remove(member):
-    if 'spotts' in member.name.lower():
-        await bot.get_channel(nook_and_cranny['channels']['general']).send('Not again!')
+@client.tree.command()
+async def hello(interaction: discord.Interaction):
+    """Says hello!"""
+    await interaction.response.send_message(f'Hi, {interaction.user.mention}')
 
 
-@bot.event
-async def on_ready():
-    print(f"{bot.user} at your service")
+@client.tree.command()
+async def drink(interaction: discord.Interaction):
+    """Barkeep will recommend you a drink"""
+    await interaction.response.send_message(f'Might I suggest {DrinkRepository.make().get_drink()}?')
 
 
-@bot.slash_command(description='Says hello', guild_ids=server_ids)
-async def hello(ctx):
-    await ctx.respond("Hello World.")
-
-
-@bot.slash_command(name='drink', description='Barkeep will recommend you a drink', guild_ids=server_ids)
-async def get_drink(ctx):
-    await ctx.respond(f'Might I suggest {DrinkRepository.make().get_drink()}?')
-
-
-@bot.slash_command(description='Make a suggestion to improve the bot', guild_ids=server_ids)
-async def suggest(ctx, suggestion: str):
+@client.tree.command()
+async def suggest(interaction: discord.Interaction, suggestion: str):
+    """Make a suggestion to improve the bot"""
     Suggestions.add_suggestion(Utilities.sanitise(suggestion))
-    await ctx.respond("I'll take a note of that.")
+    await interaction.response.send_message("I'll take a note of that.")
 
 
-@bot.event
-async def on_raw_reaction_add(event):
-    if event.emoji.name != '⭐':
-        return
-    channel = bot.get_channel(event.channel_id)
-    message = await channel.fetch_message(event.message_id)
-    reaction = get(message.reactions, emoji=event.emoji.name)
-    if reaction.count == 3:
-        guild_name = bot.get_guild(event.guild_id).name
-        hall_of_fame = get(bot.get_all_channels(), guild__name=guild_name, name='hall-of-fame')
-        await hall_of_fame.send(message.content + '\n' + message.jump_url)
-
-
-bot.run(Token.get_token())
+client.run(Token.get_token())
