@@ -1,4 +1,4 @@
-path = '..\\data\\suggestions.txt'
+path = '../data/suggestions.txt'
 
 
 def add_suggestion(suggestion):

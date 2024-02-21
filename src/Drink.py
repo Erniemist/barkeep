@@ -5,7 +5,7 @@ from typing import Self
 
 
 def read_drinks_list() -> list[str]:
-    with open('..\\data\\drinks.txt', 'r') as f:
+    with open('../data/drinks.txt', 'r') as f:
         return list(f.readlines())
 
 
