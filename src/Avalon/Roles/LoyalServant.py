@@ -1,6 +1,9 @@
-class LoyalServant:
+from src.Avalon.Roles.Role import Role
+
+
+class LoyalServant(Role):
     team = "Good"
     name = "Loyal Servant"
 
     def __init__(self, player):
-        self.player = player
+        super().__init__(player)
