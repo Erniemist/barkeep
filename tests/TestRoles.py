@@ -30,7 +30,21 @@ class TestRoles(unittest.TestCase):
         ]
         player = players[1]
         assert player.info(
-            players) == "You are Percival. Colin and Dan are Merlin and Morgana, but you know not who is who..."
+            players) == "You are Percival. Colin and Dan are Merlin and Morgana, but you know not who is who...", player.info(
+            players)
+
+    def test_loathsome_minion(self):
+        players = [
+            LoyalServant("Albert"),
+            Percival("Bernard"),
+            Merlin("Colin"),
+            Morgana("Dan"),
+            Minion("Emily")
+        ]
+        player = players[4]
+        assert player.info(
+            players) == "You are a Loathsome Minion of Mordred. You know that Dan is your dark ally.", player.info(
+            players)
 
 
 if __name__ == '__main__':
