@@ -10,14 +10,14 @@ def read_drinks_list() -> list[str]:
 
 
 class DrinkRepository:
-    def __init__(self, drinks_list=None):
-        self.drinks_list = drinks_list if drinks_list is not None else read_drinks_list()
+    def __init__(self, drinks_list):
+        self.drinks_list = drinks_list
 
     @classmethod
     @lru_cache(1)
     def make(cls) -> Self:
         """Makes a singleton instance of DrinkRepository"""
-        return DrinkRepository()
+        return DrinkRepository(read_drinks_list())
 
     def get_drink(self) -> str:
         return random.choice(random.choice(self.get_drink_variants()))
