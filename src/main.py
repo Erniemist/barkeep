@@ -1,6 +1,6 @@
 from discord import app_commands
 
-import Drink
+from Drink import DrinkRepository
 import Suggestions
 import Utilities
 import discord
@@ -40,8 +40,7 @@ async def hello(interaction: discord.Interaction):
 @client.tree.command()
 async def drink(interaction: discord.Interaction):
     """Barkeep will recommend you a drink"""
-    chosen_drink = Drink.get_drink()
-    await interaction.response.send_message(f'Might I suggest {chosen_drink.article} {chosen_drink.name}?')
+    await interaction.response.send_message(f'Might I suggest {DrinkRepository.make().get_drink()}?')
 
 
 @client.tree.command()
