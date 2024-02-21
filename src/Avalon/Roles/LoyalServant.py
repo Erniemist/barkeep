@@ -8,5 +8,5 @@ class LoyalServant(Role):
     def __init__(self, player):
         super().__init__(player)
 
-    def info(self, players):
+    def info(self, players: list[Role]) -> str:
         return "You are a Loyal Servant of King Arthur of Britain. You don't know anything."

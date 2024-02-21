@@ -7,9 +7,11 @@ class Role(ABC):
     GOOD = "good"
     EVIL = "evil"
 
-
     def __init__(self, player):
         self.player = player
 
     def info(self, players) -> str:
         raise NotImplemented
+
+    def is_evil(self):
+        return self.team == Role.EVIL

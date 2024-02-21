@@ -8,6 +8,6 @@ class Merlin(Role):
     def __init__(self, player):
         super().__init__(player)
 
-    def info(self, players):
-        evil_players = [player.player for player in players if player.team == Role.EVIL]
+    def info(self, players: list[Role]) -> str:
+        evil_players = [player.player for player in players if player.is_evil()]
         return f"You are Merlin. {' and '.join(evil_players)} are Evil."
