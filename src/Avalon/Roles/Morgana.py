@@ -10,7 +10,7 @@ class Morgana(Role):
 
     def info(self, players: list[Role]) -> str:
         other_evil_players = [
-            player.player
+            player.player.name
             for player in players
             if player.is_evil() and player.player != self.player
         ]

@@ -8,6 +8,7 @@ from discord.ext.commands import Bot
 from discord.utils import get
 from Avalon.Game import Game
 from Avalon.Roles.LoyalServant import LoyalServant
+from src.Avalon.StartGameView import StartGameView
 
 
 class Client(discord.Client):
@@ -54,10 +55,7 @@ async def suggest(interaction: discord.Interaction, suggestion: str):
 @client.tree.command()
 async def start_game(interaction: discord.Interaction):
     """Start a game of Avalon"""
-    game = Game([interaction.user], [LoyalServant.name])
-    await interaction.response.send_message(f'The turn order is\n{game.display_turn_order()}')
-    for player, info in game.get_info():
-        await player.send(info)
+    await interaction.response.send_message("", view=StartGameView(Game.ROLES))
 
 
 with open('../token.txt', 'r') as f:

@@ -22,7 +22,7 @@ class Minion(Role):
 
     def other_evils(self, players):
         other_evil_players = [
-            player.player
+            player.player.name
             for player in players
             if player.is_evil() and player.player != self.player
         ]
