@@ -70,6 +70,18 @@ class TestRoles(unittest.TestCase):
             players) == "You are Morgana. You know that Emily is your sinister accomplice.", player.info(
             players)
 
+    def test_more_evils(self):
+        players = [
+            Minion("Albert"),
+            Minion("Bernard"),
+            Minion("Colin"),
+            Minion("Dan"),
+            Minion("Emily")
+        ]
+        player = players[4]
+        assert player.info(players) == "You are a Loathsome Minion of Mordred. " \
+                                       "You know that Albert, Bernard, Colin, and Dan are your dark allies.",\
+            player.info(players)
 
 if __name__ == '__main__':
     unittest.main()
