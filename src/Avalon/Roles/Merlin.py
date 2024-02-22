@@ -1,12 +1,9 @@
-from src.Avalon.Roles.Role import Role
-
-
-class Merlin(Role):
+class Merlin:
     team = "Good"
     name = "Merlin"
 
     def __init__(self, player):
-        super().__init__(player)
+        self.player = player
 
     def info(self, players):
         evil_players = [player.player for player in players if player.team == "Evil"]
