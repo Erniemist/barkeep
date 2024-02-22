@@ -2,7 +2,7 @@ from src.Avalon.Roles.Role import Role
 
 
 class LoyalServant(Role):
-    team = Role.GOOD
+    team = "Good"
     name = "Loyal Servant"
 
     def __init__(self, player):
