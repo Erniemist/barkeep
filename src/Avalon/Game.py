@@ -10,16 +10,17 @@ from src.Avalon.Roles.Percival import Percival
 
 
 def assign_role(player, role_name):
-    if role_name is "Loyal Servant":
+    if role_name == LoyalServant.name:
         return LoyalServant(player)
-    if role_name is "Morgana":
+    if role_name == Morgana.name:
         return Morgana(player)
-    if role_name is "Merlin":
+    if role_name == Merlin.name:
         return Merlin(player)
-    if role_name is "Percival":
+    if role_name == Percival.name:
         return Percival(player)
-    if role_name is "Loathsome Minion of Mordred":
+    if role_name == Minion.name:
         return Minion(player)
+    raise DomainException(f'{role_name} not recognised')
 
 
 class Game:
@@ -27,9 +28,9 @@ class Game:
         self.characters = [assign_role(player, role) for player, role in zip(players, roles)]
         random.shuffle(self.characters)
 
-    def give_info(self):
+    def get_info(self):
         for character in self.characters:
-            character.player.send(character.info(self.characters))
+            yield character.player, character.info(self.characters)
 
     def display_turn_order(self):
-        return [character.player.display_name for character in self.characters]
+        return '\n '.join([character.player.display_name for character in self.characters])
