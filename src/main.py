@@ -32,7 +32,6 @@ async def on_ready():
     print(f'Logged in as {client.user} (ID: {client.user.id})')
     print('------')
 
-
 @client.tree.command()
 async def hello(interaction: discord.Interaction):
     """Says hello!"""
