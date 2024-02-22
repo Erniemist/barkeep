@@ -24,9 +24,10 @@ def assign_role(player, role_name):
 
 
 class Game:
+    ROLES = [LoyalServant.name, Morgana.name, Merlin.name, Percival.name, Minion.name]
     def __init__(self, players: list[discord.Member], roles: list[str]):
+        random.shuffle(roles)
         self.characters = [assign_role(player, role) for player, role in zip(players, roles)]
-        random.shuffle(self.characters)
 
     def get_info(self):
         for character in self.characters:
