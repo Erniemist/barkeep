@@ -11,6 +11,7 @@ class StartGameView(discord.ui.View):
         self.roles = [discord.SelectOption(label=role, value=role) for role in roles]
         self.roles.append(discord.SelectOption(label="Additional Loyal Servant", value="Loyal Servant"))
         self.roles.append(discord.SelectOption(label="Additional Loyal Servant", value="Loyal Servant"))
+        self.roles.append(discord.SelectOption(label="Additional Loyal Servant", value="Loyal Servant"))
         self.roles.append(
             discord.SelectOption(label="Additional Minion of Mordred", value="Loathsome Minion of Mordred"))
         self.roles.append(
