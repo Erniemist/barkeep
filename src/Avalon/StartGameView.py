@@ -8,8 +8,15 @@ from src.Avalon.Roles.Role import Role
 class StartGameView(discord.ui.View):
 
     def __init__(self, roles: list):
-        self.roles=[discord.SelectOption(label=role, value=role) for role in roles]
+        self.roles = [discord.SelectOption(label=role, value=role) for role in roles]
+        self.roles.append(discord.SelectOption(label="Additional Loyal Servant", value="Loyal Servant"))
+        self.roles.append(discord.SelectOption(label="Additional Loyal Servant", value="Loyal Servant"))
+        self.roles.append(
+            discord.SelectOption(label="Additional Minion of Mordred", value="Loathsome Minion of Mordred"))
+        self.roles.append(
+            discord.SelectOption(label="Additional Minion of Mordred", value="Loathsome Minion of Mordred"))
         super().__init__()
+
     @discord.ui.select(cls=discord.ui.UserSelect, max_values=12)
     async def select_players(self, interaction, select: discord.ui.UserSelect):
         return await interaction.response.send_message(
@@ -33,7 +40,7 @@ class StartGameView(discord.ui.View):
         if len(self.select_roles.values) != len(self.select_players.values):
             raise ValueError
         players = [Player(member) for member in self.select_players.values]
-        game = Game(self.select_players.values, self.select_roles.values)
+        game = Game(players, self.select_roles.values)
         await interaction.response.send_message(f'The turn order is\n{game.display_turn_order()}')
         for player, info in game.get_info():
-            print(player, info)
+            await player.discord_member.send(info)

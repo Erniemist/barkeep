@@ -1,6 +1,6 @@
 from discord import app_commands
 
-from Drink import DrinkRepository
+#from Drink import DrinkRepository
 import Suggestions
 import Utilities
 import discord
@@ -31,6 +31,7 @@ client = Client(intents=discord.Intents.default())
 async def on_ready():
     print(f'Logged in as {client.user} (ID: {client.user.id})')
     print('------')
+
 
 @client.tree.command()
 async def hello(interaction: discord.Interaction):

@@ -2,6 +2,7 @@ import random
 
 import discord
 
+from src.Avalon.Player import Player
 from src.Avalon.Roles.LoyalServant import LoyalServant
 from src.Avalon.Roles.Merlin import Merlin
 from src.Avalon.Roles.Minion import Minion
@@ -25,7 +26,7 @@ def assign_role(player, role_name):
 
 class Game:
     ROLES = [LoyalServant.name, Morgana.name, Merlin.name, Percival.name, Minion.name]
-    def __init__(self, players: list[discord.Member], roles: list[str]):
+    def __init__(self, players: list[Player], roles: list[str]):
         random.shuffle(players)
         random.shuffle(roles)
         self.characters = [assign_role(player, role) for player, role in zip(players, roles)]
