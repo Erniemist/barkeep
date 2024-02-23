@@ -1,5 +1,8 @@
-class Player():
+from src.DiscordMemberInterface import DiscordMemberInterface
 
-    def __init__(self, member):
+
+class Player:
+
+    def __init__(self, member:DiscordMemberInterface):
         self.discord_member = member
-        self.name = member.display_name
+        self.name = member.name()

@@ -1,87 +1,36 @@
+import random
 import unittest
 
+from src.Avalon.Game import Game
+from src.Avalon.Player import Player
 from src.Avalon.Roles.LoyalServant import LoyalServant
 from src.Avalon.Roles.Merlin import Merlin
 from src.Avalon.Roles.Minion import Minion
 from src.Avalon.Roles.Morgana import Morgana
 from src.Avalon.Roles.Percival import Percival
+from tests.MockDiscordMember import MockDiscordMember
+from tests.TestPlayer import TestPlayer
 
 
 class TestRoles(unittest.TestCase):
-    def test_merlin(self):
-        players = [
-            LoyalServant("Albert"),
-            LoyalServant("Bernard"),
-            Merlin("Colin"),
-            Minion("Dan"),
-            Minion("Emily")
-        ]
-        player = players[2]
-        assert player.info(players) == "You are Merlin. Dan and Emily are Evil.", player.info(players)
 
-    def test_loyal(self):
-        players = [
-            LoyalServant("Albert"),
-            LoyalServant("Bernard"),
-            Merlin("Colin"),
-            Minion("Dan"),
-            Minion("Emily")
-        ]
-        player = players[1]
-        assert player.info(players) == "You are a Loyal Servant of King Arthur of Britain. You don't know anything.",\
-            player.info(players)
+    def test_info(self):
+        random.seed(11)
+        game = Game([Player(MockDiscordMember(name)) for name in ["Albert", "Bernard", "Colin", "Dan", "Emily"]],[LoyalServant.name, Merlin.name, Minion.name, Morgana.name, Percival.name])
+        for player, info in game.get_info():
+            print(player.name, info)
 
-    def test_percival(self):
-        players = [
-            LoyalServant("Albert"),
-            Percival("Bernard"),
-            Merlin("Colin"),
-            Morgana("Dan"),
-            Minion("Emily")
-        ]
-        player = players[1]
-        assert player.info(
-            players) == "You are Percival. Colin and Dan are Merlin and Morgana, but you know not who is who...", player.info(
-            players)
+        expectations = {
+            "Colin" : "You are Percival. Emily and Dan are Merlin and Morgana, but you know not who is who...",
+            "Albert": "You are a Loyal Servant of King Arthur of Britain. You don't know anything.",
+            "Bernard": "You are a Loathsome Minion of Mordred. You know that Emily is your dark ally.",
+            "Emily": "You are Morgana. You know that Bernard is your sinister accomplice.",
+            "Dan": "You are Merlin. Bernard and Emily are Evil.",
+        }
 
-    def test_loathsome_minion(self):
-        players = [
-            LoyalServant("Albert"),
-            Percival("Bernard"),
-            Merlin("Colin"),
-            Morgana("Dan"),
-            Minion("Emily")
-        ]
-        player = players[4]
-        assert player.info(
-            players) == "You are a Loathsome Minion of Mordred. You know that Dan is your dark ally.", player.info(
-            players)
-
-    def test_morgana(self):
-        players = [
-            LoyalServant("Albert"),
-            Percival("Bernard"),
-            Merlin("Colin"),
-            Morgana("Dan"),
-            Minion("Emily")
-        ]
-        player = players[3]
-        assert player.info(
-            players) == "You are Morgana. You know that Emily is your sinister accomplice.", player.info(
-            players)
-
-    def test_more_evils(self):
-        players = [
-            Minion("Albert"),
-            Minion("Bernard"),
-            Minion("Colin"),
-            Minion("Dan"),
-            Minion("Emily")
-        ]
-        player = players[4]
-        assert player.info(players) == "You are a Loathsome Minion of Mordred. " \
-                                       "You know that Albert, Bernard, Colin, and Dan are your dark allies.",\
-            player.info(players)
+        output = {player.name: info for player,info in game.get_info()}
+        print(output)
+        assert expectations == output
 
 if __name__ == '__main__':
     unittest.main()

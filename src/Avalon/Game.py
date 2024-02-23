@@ -1,4 +1,5 @@
 import random
+from typing import Generator
 
 import discord
 
@@ -31,7 +32,7 @@ class Game:
         random.shuffle(roles)
         self.characters = [assign_role(player, role) for player, role in zip(players, roles)]
 
-    def get_info(self):
+    def get_info(self) -> Generator[tuple[Player, str], None, None]:
         for character in self.characters:
             yield character.player, character.info(self.characters)
 
