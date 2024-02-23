@@ -1,6 +1,6 @@
 from discord import app_commands
 
-#from Drink import DrinkRepository
+from Drink import DrinkRepository
 import Suggestions
 import Utilities
 import discord
