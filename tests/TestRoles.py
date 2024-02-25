@@ -16,7 +16,7 @@ class TestRoles(unittest.TestCase):
 
     def test_info(self):
         random.seed(11)
-        game = Game([Player(MockDiscordMember(name)) for name in ["Albert", "Bernard", "Colin", "Dan", "Emily"]],[LoyalServant.name, Merlin.name, Minion.name, Morgana.name, Percival.name])
+        game = Game([MockDiscordMember(name) for name in ["Albert", "Bernard", "Colin", "Dan", "Emily"]],[LoyalServant.name, Merlin.name, Minion.name, Morgana.name, Percival.name])
         for player, info in game.get_info():
             print(player.name, info)
 

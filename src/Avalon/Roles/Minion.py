@@ -1,14 +1,15 @@
 from src.Avalon.Roles.Role import Role
+from src.DiscordMemberInterface import DiscordMemberInterface
 
 
 class Minion(Role):
     team = Role.EVIL
     name = "Loathsome Minion of Mordred"
 
-    def __init__(self, player):
-        super().__init__(player)
+    def __init__(self, member: DiscordMemberInterface):
+        super().__init__(member)
 
-    def info(self, players: list[Role]) -> str:
+    def info(self, players: list[Role], ) -> str:
         other_evils = self.other_evils(players)
         if len(other_evils) == 0:
             return f"You are a {Minion.name}. You have no known allies."

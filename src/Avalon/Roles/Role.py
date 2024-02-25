@@ -1,5 +1,7 @@
 from abc import ABC
 
+from src.DiscordMemberInterface import DiscordMemberInterface
+
 
 class Role(ABC):
     team: str
@@ -7,10 +9,10 @@ class Role(ABC):
     GOOD = "good"
     EVIL = "evil"
 
-    def __init__(self, player):
-        self.player = player
+    def __init__(self, member: DiscordMemberInterface):
+        self.member = member
 
-    def info(self, players) -> str:
+    def info(self, players, player) -> str:
         raise NotImplemented
 
     def is_evil(self):

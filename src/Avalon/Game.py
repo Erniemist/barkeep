@@ -9,33 +9,35 @@ from src.Avalon.Roles.Merlin import Merlin
 from src.Avalon.Roles.Minion import Minion
 from src.Avalon.Roles.Morgana import Morgana
 from src.Avalon.Roles.Percival import Percival
+from src.DiscordMemberInterface import DiscordMemberInterface
 
 
-def assign_role(player, role_name):
+#game has a list of players a player has a discord member and a role a discord member has a real discord member a role has info
+def assign_role(member: DiscordMemberInterface, role_name: str):
     if role_name == LoyalServant.name:
-        return LoyalServant(player)
+        return Player(member, LoyalServant(member))
     if role_name == Morgana.name:
-        return Morgana(player)
+        return Player(member, Morgana(member))
     if role_name == Merlin.name:
-        return Merlin(player)
+        return Player(member, Merlin(member))
     if role_name == Percival.name:
-        return Percival(player)
+        return Player(member, Percival(member))
     if role_name == Minion.name:
-        return Minion(player)
+        return Player(member, Minion(member))
     raise Exception(f'{role_name} not recognised')
 
 
 class Game:
     ROLES = [LoyalServant.name, Morgana.name, Merlin.name, Percival.name, Minion.name]
 
-    def __init__(self, players: list[Player], roles: list[str]):
-        random.shuffle(players)
+    def __init__(self, members: list[DiscordMemberInterface], roles: list[str]):
+        random.shuffle(members)
         random.shuffle(roles)
-        self.characters = [assign_role(player, role) for player, role in zip(players, roles)]
+        self.players = [assign_role(member, role) for member, role in zip(members, roles)]
 
     def get_info(self) -> Generator[tuple[Player, str], None, None]:
-        for character in self.characters:
-            yield character.player, character.info(self.characters)
+        for player in self.players:
+            yield player, player.role.info(self.players)
 
     def display_turn_order(self):
-        return '\n '.join([character.player.display_name for character in self.characters])
+        return '\n '.join([character.player.display_name for character in self.players])
