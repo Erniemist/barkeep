@@ -22,11 +22,12 @@ def assign_role(player, role_name):
         return Percival(player)
     if role_name == Minion.name:
         return Minion(player)
-    raise DomainException(f'{role_name} not recognised')
+    raise Exception(f'{role_name} not recognised')
 
 
 class Game:
     ROLES = [LoyalServant.name, Morgana.name, Merlin.name, Percival.name, Minion.name]
+
     def __init__(self, players: list[Player], roles: list[str]):
         random.shuffle(players)
         random.shuffle(roles)
