@@ -18,9 +18,6 @@ class TestRoles(unittest.TestCase):
             roles=[LoyalServant.name, Merlin.name, Minion.name, Morgana.name, Percival.name],
         )
 
-        for player, info in game.get_info():
-            print(player.name, info)
-
         expectations = {
             "Colin": "You are Percival. Emily and Dan are Merlin and Morgana, but you know not who is who...",
             "Albert": "You are a Loyal Servant of King Arthur of Britain. You don't know anything.",
