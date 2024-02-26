@@ -16,3 +16,6 @@ class DiscordMember(DiscordMemberInterface):
 
     def get_id(self):
         return self.member.id
+
+    def name(self) -> str:
+        return self.member.display_name

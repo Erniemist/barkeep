@@ -6,4 +6,4 @@ class DiscordMemberInterface(ABC):
         pass
 
     def name(self) -> str:
-        return ""
+        raise NotImplementedError

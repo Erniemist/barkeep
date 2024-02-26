@@ -26,5 +26,5 @@ class Game:
         for player in self.players:
             yield player, player.info(self.players)
 
-    def display_turn_order(self):
+    def display_turn_order(self) -> str:
         return '\n '.join([player.name for player in self.players])
