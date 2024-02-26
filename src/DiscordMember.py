@@ -8,7 +8,6 @@ def from_id(member_id: int, guild: discord.Guild):
 
 
 class DiscordMember(DiscordMemberInterface):
-
     def __init__(self, member: discord.Member):
         self.member = member
 

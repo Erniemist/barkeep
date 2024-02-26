@@ -9,7 +9,7 @@ class Morgana(Role):
     def __init__(self, member: DiscordMemberInterface):
         super().__init__(member)
 
-    def info(self, players:list[Role], player) -> str:
+    def info(self, players: list[Role], player) -> str:
         other_evil_players = [
             player.player.name
             for player in players

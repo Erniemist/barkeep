@@ -9,5 +9,5 @@ class LoyalServant(Role):
     def __init__(self, member: DiscordMemberInterface):
         super().__init__(member)
 
-    def info(self, players:list[Role], player) -> str:
+    def info(self, players: list[Role], player) -> str:
         return "You are a Loyal Servant of King Arthur of Britain. You don't know anything."

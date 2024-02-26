@@ -2,12 +2,10 @@ import discord
 
 from src.Avalon.Game import Game
 from src.Avalon.Player import Player
-from src.Avalon.Roles.Role import Role
 from src.DiscordMember import DiscordMember
 
 
 class StartGameView(discord.ui.View):
-
     def __init__(self, roles: list):
         self.roles = [discord.SelectOption(label=role, value=role) for role in roles]
         self.roles.append(discord.SelectOption(label="Additional Loyal Servant", value="Loyal Servant"))
