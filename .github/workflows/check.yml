@@ -36,4 +36,4 @@ jobs:
     - name: Check formatting
       run: |
         pip install black
-        black .
+        black . --check --verbose
