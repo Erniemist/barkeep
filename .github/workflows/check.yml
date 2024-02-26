@@ -22,6 +22,6 @@ jobs:
 
     - name: Check Coding Standards
       run: |
-        pip install pytest
-        pytest
+        pip install pylint
+        pylint src tests
 
