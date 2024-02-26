@@ -12,7 +12,7 @@ class DiscordMember(DiscordMemberInterface):
         self.member = member
 
     async def send(self, message):
-        await self.member.send_message(message)
+        await self.member.send(message)
 
     def get_id(self):
         return self.member.id
