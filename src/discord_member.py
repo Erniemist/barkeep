@@ -1,10 +1,14 @@
 import discord
 
-from src.DiscordMemberInterface import DiscordMemberInterface
+from src.discord_member_interface import DiscordMemberInterface
 
 
 def from_id(member_id: int, guild: discord.Guild):
-    return DiscordMember(guild.get_member(member_id))
+    member = guild.get_member(member_id)
+    if member is None:
+        raise ValueError(f"Could not find member for id {member_id}")
+
+    return DiscordMember(member)
 
 
 class DiscordMember(DiscordMemberInterface):

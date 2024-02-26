@@ -4,8 +4,8 @@ import discord
 
 from src import utilities, suggestions
 from src.drink import get_drink_repository
-from Avalon.Game import Game
-from src.Avalon.StartGameView import StartGameView
+from src.avalon.game import Game
+from src.avalon.start_game_view import StartGameView
 
 
 class Client(discord.Client):
@@ -53,7 +53,7 @@ async def suggest(interaction: discord.Interaction, suggestion: str):
 
 @client.tree.command()
 async def start_game(interaction: discord.Interaction):
-    """Start a game of Avalon"""
+    """Start a game of avalon"""
     await interaction.response.send_message("", view=StartGameView(Game.ROLES))
 
 

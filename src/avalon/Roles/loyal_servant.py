@@ -1,7 +1,7 @@
 from typing import List
 
-from src.Avalon.Player import Player
-from src.Avalon.Roles.Role import Role
+from src.avalon.player import Player
+from src.avalon.Roles.role import Role
 
 
 class LoyalServant(Role):

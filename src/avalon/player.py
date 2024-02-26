@@ -1,7 +1,7 @@
 from typing import Self
 
-from src.Avalon.Roles.Role import Role
-from src.DiscordMemberInterface import DiscordMemberInterface
+from src.avalon.Roles.role import Role
+from src.discord_member_interface import DiscordMemberInterface
 
 
 class Player:

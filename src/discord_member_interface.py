@@ -2,8 +2,8 @@ from abc import ABC
 
 
 class DiscordMemberInterface(ABC):
-    def send(self, message):
-        pass
+    async def send(self, message):
+        raise NotImplementedError
 
     def name(self) -> str:
         raise NotImplementedError

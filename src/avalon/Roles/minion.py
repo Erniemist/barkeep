@@ -1,14 +1,12 @@
 from typing import List
 
-from src.Avalon.Player import Player
-from src.Avalon.Roles.Role import Role
+from src.avalon.player import Player
+from src.avalon.Roles.role import Role
 
 
 def find_other_evils(players: List[Player], me: Player):
     other_evil_players = [
-        player.name
-        for player in players
-        if player.is_evil() and player != me
+        player.name for player in players if player.is_evil() and player != me
     ]
     return other_evil_players
 
@@ -26,5 +24,7 @@ class Minion(Role):
         if len(other_evils) == 2:
             return f"You are a {Minion.name}. You know that {other_evils[0]} and {other_evils[1]} are your dark allies."
 
-        return f"You are a {Minion.name}. " \
+        return (
+            f"You are a {Minion.name}. "
             f"You know that {', '.join(other_evils[:-1])}, and {other_evils[-1]} are your dark allies."
+        )

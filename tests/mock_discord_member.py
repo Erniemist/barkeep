@@ -1,11 +1,11 @@
-from src.DiscordMemberInterface import DiscordMemberInterface
+from src.discord_member_interface import DiscordMemberInterface
 
 
 class MockDiscordMember(DiscordMemberInterface):
     def __init__(self, player_name):
         self.player_name = player_name
 
-    def send(self, message):
+    async def send(self, message):
         pass
 
     def name(self) -> str:
