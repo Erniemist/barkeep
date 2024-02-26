@@ -20,3 +20,8 @@ jobs:
         pip install pytest
         pytest
 
+    - name: Check Coding Standards
+      run: |
+        pip install pytest
+        pytest
+
