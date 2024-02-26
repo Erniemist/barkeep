@@ -3,7 +3,7 @@ from functools import lru_cache
 
 
 def read_drinks_list() -> list[str]:
-    with open('../data/drinks.txt', mode='r', encoding='utf-8') as f:
+    with open("../data/drinks.txt", mode="r", encoding="utf-8") as f:
         return list(f.readlines())
 
 
@@ -16,10 +16,7 @@ class DrinkRepository:
 
     def get_drink_variants(self):
         return [
-            [
-                drink_text.strip('\n')
-                for drink_text in drink_line.split(',')
-            ]
+            [drink_text.strip("\n") for drink_text in drink_line.split(",")]
             for drink_line in self.drinks_list
         ]
 

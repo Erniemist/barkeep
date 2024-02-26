@@ -10,7 +10,7 @@ class Client(discord.Client):
     def __init__(self, *, intents: discord.Intents):
         super().__init__(intents=intents)
         self.tree = app_commands.CommandTree(self)
-        with open('server_id.txt', mode='r', encoding='utf-8') as file:
+        with open("server_id.txt", mode="r", encoding="utf-8") as file:
             server_id = file.readline().strip()
         self.server = discord.Object(id=server_id)
 
@@ -24,21 +24,21 @@ client = Client(intents=discord.Intents.default())
 
 @client.event
 async def on_ready():
-    print(f'Logged in as {client.user} (ID: {client.user.id})')
-    print('------')
+    print(f"Logged in as {client.user} (ID: {client.user.id})")
+    print("------")
 
 
 @client.tree.command()
 async def hello(interaction: discord.Interaction):
     """Says hello!"""
-    await interaction.response.send_message(f'Hi, {interaction.user.mention}')
+    await interaction.response.send_message(f"Hi, {interaction.user.mention}")
 
 
 @client.tree.command()
 async def drink(interaction: discord.Interaction):
     """Barkeep will recommend you a drink"""
     await interaction.response.send_message(
-        f'Might I suggest {get_drink_repository().get_drink()}?',
+        f"Might I suggest {get_drink_repository().get_drink()}?",
     )
 
 
@@ -49,6 +49,6 @@ async def suggest(interaction: discord.Interaction, suggestion: str):
     await interaction.response.send_message("I'll take a note of that.")
 
 
-with open('token.txt', mode='r', encoding='utf-8') as f:
+with open("token.txt", mode="r", encoding="utf-8") as f:
     token = f.readline().strip()
 client.run(token)
