@@ -2,16 +2,15 @@ from discord import app_commands
 
 import discord
 
-from drink import DrinkRepository
-import suggestions
-import utilities
+from src import utilities, suggestions
+from src.drink import DrinkRepository
 
 
 class Client(discord.Client):
     def __init__(self, *, intents: discord.Intents):
         super().__init__(intents=intents)
         self.tree = app_commands.CommandTree(self)
-        with open('../server_id.txt', mode='r', encoding='utf-8') as file:
+        with open('server_id.txt', mode='r', encoding='utf-8') as file:
             server_id = file.readline().strip()
         self.server = discord.Object(id=server_id)
 
@@ -50,6 +49,6 @@ async def suggest(interaction: discord.Interaction, suggestion: str):
     await interaction.response.send_message("I'll take a note of that.")
 
 
-with open('../token.txt', mode='r', encoding='utf-8') as f:
+with open('token.txt', mode='r', encoding='utf-8') as f:
     token = f.readline().strip()
 client.run(token)
