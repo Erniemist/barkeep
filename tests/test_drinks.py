@@ -1,4 +1,4 @@
-from src.Drink import DrinkRepository
+from src.drink import DrinkRepository
 
 
 def test_get_drink():
