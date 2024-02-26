@@ -1,4 +1,3 @@
-yaml
 name: Avalon test CI
 on: [push]
 jobs:
