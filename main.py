@@ -3,7 +3,7 @@ from discord import app_commands
 import discord
 
 from src import utilities, suggestions
-from src.drink import DrinkRepository
+from src.drink import get_drink_repository
 
 
 class Client(discord.Client):
@@ -38,7 +38,7 @@ async def hello(interaction: discord.Interaction):
 async def drink(interaction: discord.Interaction):
     """Barkeep will recommend you a drink"""
     await interaction.response.send_message(
-        f'Might I suggest {DrinkRepository.make().get_drink()}?',
+        f'Might I suggest {get_drink_repository().get_drink()}?',
     )
 
 

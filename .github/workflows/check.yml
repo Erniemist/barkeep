@@ -23,7 +23,9 @@ jobs:
     - name: Check Coding Standards
       run: |
         pip install pylint
-        pylint main.py src tests
+        pylint main.py
+        pylint src
+        pylint tests
 
     - name: Check types
       run: |
