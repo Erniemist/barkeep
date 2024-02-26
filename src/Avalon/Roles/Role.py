@@ -1,7 +1,5 @@
 from abc import ABC
 
-from src.DiscordMemberInterface import DiscordMemberInterface
-
 
 class Role(ABC):
     team: str

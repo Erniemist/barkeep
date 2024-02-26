@@ -4,10 +4,7 @@ from Drink import DrinkRepository
 import Suggestions
 import Utilities
 import discord
-from discord.ext.commands import Bot
-from discord.utils import get
 from Avalon.Game import Game
-from Avalon.Roles.LoyalServant import LoyalServant
 from src.Avalon.StartGameView import StartGameView
 
 

@@ -1,7 +1,6 @@
 import discord
 
 from src.Avalon.Game import Game
-from src.Avalon.Player import Player
 from src.DiscordMember import DiscordMember
 
 
@@ -39,8 +38,8 @@ class StartGameView(discord.ui.View):
     async def start(self, interaction, button):
         if len(self.select_roles.values) != len(self.select_players.values):
             raise ValueError
-        players = [Player(DiscordMember(member)) for member in self.select_players.values]
-        game = Game(players, self.select_roles.values)
+        members = [DiscordMember(member) for member in self.select_players.values]
+        game = Game(members, self.select_roles.values)
         await interaction.response.send_message(f'The turn order is\n{game.display_turn_order()}')
         for player, info in game.get_info():
             await player.discord_member.send(info)
