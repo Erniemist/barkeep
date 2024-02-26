@@ -1,5 +1,17 @@
+from typing import List
+
+from src.Avalon.Player import Player
 from src.Avalon.Roles.Role import Role
 from src.DiscordMemberInterface import DiscordMemberInterface
+
+
+def find_other_evils(players: List[Player], me: Player):
+    other_evil_players = [
+        player.name
+        for player in players
+        if player.is_evil() and player != me
+    ]
+    return other_evil_players
 
 
 class Morgana(Role):
@@ -9,10 +21,6 @@ class Morgana(Role):
     def __init__(self, member: DiscordMemberInterface):
         super().__init__(member)
 
-    def info(self, players: list[Role], player) -> str:
-        other_evil_players = [
-            player.player.name
-            for player in players
-            if player.is_evil() and player.player != self.player
-        ]
+    def info(self, players: List[Player], player: Player) -> str:
+        other_evil_players = find_other_evils(players, player)
         return f"You are Morgana. You know that {' and '.join(other_evil_players)} is your sinister accomplice."

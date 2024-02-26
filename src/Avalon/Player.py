@@ -10,5 +10,8 @@ class Player:
         self.role = role
         self.name = member.name()
 
-    def info(self, players: list[Self], player: Self):
-        return self.role.info(players, player)
+    def info(self, players: list[Self]):
+        return self.role.info(players, self)
+
+    def is_evil(self):
+        return self.role.is_evil()

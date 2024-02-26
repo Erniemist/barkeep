@@ -1,8 +1,6 @@
 import random
 from typing import Generator
 
-import discord
-
 from src.Avalon.Player import Player
 from src.Avalon.Roles.LoyalServant import LoyalServant
 from src.Avalon.Roles.Merlin import Merlin
@@ -37,7 +35,7 @@ class Game:
 
     def get_info(self) -> Generator[tuple[Player, str], None, None]:
         for player in self.players:
-            yield player, player.role.info(self.players)
+            yield player, player.info(self.players)
 
     def display_turn_order(self):
-        return '\n '.join([character.player.display_name for character in self.players])
+        return '\n '.join([player.name for player in self.players])

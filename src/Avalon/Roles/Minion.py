@@ -1,5 +1,17 @@
+from typing import List
+
+from src.Avalon.Player import Player
 from src.Avalon.Roles.Role import Role
 from src.DiscordMemberInterface import DiscordMemberInterface
+
+
+def find_other_evils(players: List[Player], me: Player):
+    other_evil_players = [
+        player.name
+        for player in players
+        if player.is_evil() and player != me
+    ]
+    return other_evil_players
 
 
 class Minion(Role):
@@ -9,8 +21,8 @@ class Minion(Role):
     def __init__(self, member: DiscordMemberInterface):
         super().__init__(member)
 
-    def info(self, players: list[Role], ) -> str:
-        other_evils = self.other_evils(players)
+    def info(self, players: List[Player], player: Player) -> str:
+        other_evils = find_other_evils(players, player)
         if len(other_evils) == 0:
             return f"You are a {Minion.name}. You have no known allies."
         if len(other_evils) == 1:
@@ -20,11 +32,3 @@ class Minion(Role):
 
         return f"You are a {Minion.name}. " \
             f"You know that {', '.join(other_evils[:-1])}, and {other_evils[-1]} are your dark allies."
-
-    def other_evils(self, players):
-        other_evil_players = [
-            player.player.name
-            for player in players
-            if player.is_evil() and player.player != self.player
-        ]
-        return other_evil_players
