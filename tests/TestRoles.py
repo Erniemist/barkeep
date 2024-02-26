@@ -15,7 +15,7 @@ class TestRoles(unittest.TestCase):
         random.seed(11)
         game = Game(
             members=[MockDiscordMember(name) for name in ["Albert", "Bernard", "Colin", "Dan", "Emily"]],
-            roles=[LoyalServant.name, Merlin.name, Minion.name, Morgana.name, Percival.name],
+            role_names=[LoyalServant.name, Merlin.name, Minion.name, Morgana.name, Percival.name],
         )
 
         expectations = {
