@@ -13,15 +13,15 @@ from src.DiscordMemberInterface import DiscordMemberInterface
 #game has a list of players a player has a discord member and a role a discord member has a real discord member a role has info
 def assign_role(member: DiscordMemberInterface, role_name: str):
     if role_name == LoyalServant.name:
-        return Player(member, LoyalServant(member))
+        return Player(member, LoyalServant())
     if role_name == Morgana.name:
-        return Player(member, Morgana(member))
+        return Player(member, Morgana())
     if role_name == Merlin.name:
-        return Player(member, Merlin(member))
+        return Player(member, Merlin())
     if role_name == Percival.name:
-        return Player(member, Percival(member))
+        return Player(member, Percival())
     if role_name == Minion.name:
-        return Player(member, Minion(member))
+        return Player(member, Minion())
     raise Exception(f'{role_name} not recognised')
 
 

@@ -9,9 +9,6 @@ class Role(ABC):
     GOOD = "good"
     EVIL = "evil"
 
-    def __init__(self, member: DiscordMemberInterface):
-        self.member = member
-
     def info(self, players, player) -> str:
         raise NotImplemented
 

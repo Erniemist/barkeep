@@ -2,7 +2,6 @@ from typing import List
 
 from src.Avalon.Player import Player
 from src.Avalon.Roles.Role import Role
-from src.DiscordMemberInterface import DiscordMemberInterface
 
 
 def find_other_evils(players: List[Player], me: Player):
@@ -17,9 +16,6 @@ def find_other_evils(players: List[Player], me: Player):
 class Minion(Role):
     team = Role.EVIL
     name = "Loathsome Minion of Mordred"
-
-    def __init__(self, member: DiscordMemberInterface):
-        super().__init__(member)
 
     def info(self, players: List[Player], player: Player) -> str:
         other_evils = find_other_evils(players, player)
