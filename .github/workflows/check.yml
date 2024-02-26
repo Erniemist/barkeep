@@ -17,23 +17,16 @@ jobs:
         pip install -r requirements.txt
 
     - name: Run tests
-      run: |
-        pip install pytest
-        pytest
+      run: pytest
 
     - name: Check Coding Standards
       run: |
-        pip install pylint
         pylint main.py
         pylint src
         pylint tests
 
     - name: Check types
-      run: |
-        pip install mypy
-        mypy .
+      run: mypy .
 
     - name: Check formatting
-      run: |
-        pip install black
-        black . --check --verbose
+      run: black . --check --verbose
