@@ -31,4 +31,12 @@ jobs:
     - name: Check types
       run: |
         pip install mypy
-        mypy .
+        mypy .  with:
+
+    - name: Check formatting
+      uses: psf/black@stable
+      with:
+        options: "--check --verbose"
+        src: "."
+        jupyter: true
+        version: "21.5b1"
