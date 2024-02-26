@@ -1,4 +1,4 @@
-from src.Avalon.Roles.Role import Role
+from src.avalon.Roles.role import Role
 
 
 class Minion(Role):
@@ -17,8 +17,10 @@ class Minion(Role):
         if len(other_evils) == 2:
             return f"You are a {Minion.name}. You know that {other_evils[0]} and {other_evils[1]} are your dark allies."
 
-        return f"You are a {Minion.name}. " \
+        return (
+            f"You are a {Minion.name}. "
             f"You know that {', '.join(other_evils[:-1])}, and {other_evils[-1]} are your dark allies."
+        )
 
     def other_evils(self, players):
         other_evil_players = [

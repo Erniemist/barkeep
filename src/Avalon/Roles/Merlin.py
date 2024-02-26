@@ -1,4 +1,4 @@
-from src.Avalon.Roles.Role import Role
+from src.avalon.Roles.role import Role
 
 
 class Merlin(Role):

@@ -3,9 +3,8 @@ from discord import app_commands
 import discord
 
 from src import utilities, suggestions
+from src.avalon.game import Game
 from src.drink import get_drink_repository
-from Avalon.Game import Game
-from Avalon.Roles.LoyalServant import LoyalServant
 
 
 class Client(discord.Client):
@@ -54,8 +53,10 @@ async def suggest(interaction: discord.Interaction, suggestion: str):
 @client.tree.command()
 async def start_game(interaction: discord.Interaction):
     """Start a game of Avalon"""
-    game = Game([interaction.user], [LoyalServant.name])
-    await interaction.response.send_message(f'The turn order is\n{game.display_turn_order()}')
+    game = Game([], [])
+    await interaction.response.send_message(
+        f"The turn order is\n{game.display_turn_order()}"
+    )
     for player, info in game.get_info():
         await player.send(info)
 
