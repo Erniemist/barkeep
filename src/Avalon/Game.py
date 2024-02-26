@@ -10,7 +10,6 @@ from src.Avalon.Roles.Percival import Percival
 from src.DiscordMemberInterface import DiscordMemberInterface
 
 
-#game has a list of players a player has a discord member and a role a discord member has a real discord member a role has info
 def assign_role(member: DiscordMemberInterface, role_name: str):
     if role_name == LoyalServant.name:
         return Player(member, LoyalServant())
