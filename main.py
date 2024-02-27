@@ -54,7 +54,15 @@ async def suggest(interaction: discord.Interaction, suggestion: str):
 @client.tree.command()
 async def start_game(interaction: discord.Interaction):
     """Start a game of avalon"""
-    await interaction.response.send_message("", view=StartGameView(Game.ROLES))
+    await interaction.response.send_message(
+        "",
+        view=StartGameView(Game.ROLES),
+        embed=discord.Embed(
+            title="Roles",
+            description="No roles selected",
+            color=discord.Color.light_embed(),
+        ),
+    )
 
 
 with open("token.txt", mode="r", encoding="utf-8") as f:
