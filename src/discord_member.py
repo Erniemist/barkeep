@@ -1,6 +1,6 @@
-import discord
+from typing import Union
 
-from src.discord_member_interface import DiscordMemberInterface
+import discord
 
 
 def from_id(member_id: int, guild: discord.Guild):
@@ -11,11 +11,13 @@ def from_id(member_id: int, guild: discord.Guild):
     return DiscordMember(member)
 
 
-class DiscordMember(DiscordMemberInterface):
-    def __init__(self, member: discord.Member):
+class DiscordMember:
+    def __init__(self, member: Union[discord.Member, discord.User]):
+        if isinstance(member, discord.User):
+            raise ValueError('Someone from outside the server tried to join the game?')
         self.member = member
 
-    async def send(self, message):
+    async def send(self, message) -> None:
         await self.member.send(message)
 
     def get_id(self):

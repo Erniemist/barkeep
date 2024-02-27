@@ -1,8 +1,8 @@
-from abc import ABC
+from typing import Protocol
 
 
-class DiscordMemberInterface(ABC):
-    async def send(self, message):
+class DiscordMemberInterface(Protocol):
+    async def send(self, message) -> None:
         raise NotImplementedError
 
     def name(self) -> str:

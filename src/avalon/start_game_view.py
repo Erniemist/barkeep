@@ -41,6 +41,8 @@ class StartGameView(discord.ui.View):
     @discord.ui.select(cls=discord.ui.UserSelect, max_values=12)
     async def select_players(self, interaction: discord.Interaction, _):
         await interaction.response.defer()
+        if interaction.message is None:
+            raise RuntimeError("No message found on start game interaction")
         self.start.disabled = self.should_disable_button()
         return await interaction.message.edit(
             content=interaction.message.content,
@@ -55,6 +57,8 @@ class StartGameView(discord.ui.View):
     )
     async def select_roles(self, interaction: discord.Interaction, _):
         await interaction.response.defer()
+        if interaction.message is None:
+            raise RuntimeError("No message found on start game interaction")
         self.start.disabled = self.should_disable_button()
         return await interaction.message.edit(
             content=interaction.message.content,
@@ -63,6 +67,8 @@ class StartGameView(discord.ui.View):
         )
 
     def display_selected_roles(self, interaction: discord.Interaction):
+        if interaction.message is None:
+            raise RuntimeError("No message found on start game interaction")
         embed = interaction.message.embeds[0]
         embed.description = f"You have selected {", ".join(self.select_roles.values)}"
         return embed

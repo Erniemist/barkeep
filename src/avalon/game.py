@@ -1,5 +1,5 @@
 import random
-from typing import Generator
+from typing import Generator, Sequence
 
 from src.avalon.player import Player
 from src.avalon.Roles import role_factory
@@ -14,9 +14,11 @@ from src.discord_member_interface import DiscordMemberInterface
 class Game:
     ROLES = [LoyalServant.name, Morgana.name, Merlin.name, Percival.name, Minion.name]
 
-    def __init__(self, members: list[DiscordMemberInterface], role_names: list[str]):
-        random.shuffle(members)
-        random.shuffle(role_names)
+    def __init__(
+        self, members: Sequence[DiscordMemberInterface], role_names: Sequence[str]
+    ):
+        random.shuffle(list(members))
+        random.shuffle(list(role_names))
         self.players = [
             Player(member, role_factory.from_name(role_name))
             for member, role_name in zip(members, role_names)
