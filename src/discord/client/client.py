@@ -11,14 +11,11 @@ class Client(discord.Client):
     def __init__(self, *, intents: discord.Intents):
         super().__init__(intents=intents)
         self.tree = app_commands.CommandTree(self)
-        with open("server_id.txt", mode="r", encoding="utf-8") as file:
-            server_id = file.readline().strip()
-        server = discord.Object(id=server_id)
-        if not isinstance(server, discord.Guild):
-            raise ValueError(f"{server_id} is not a guild")
-        self.server = server
 
     async def setup_hook(self):
+        with open("server_id.txt", mode="r", encoding="utf-8") as file:
+            server_id = file.readline().strip()
+        self.server = await self.fetch_guild(int(server_id))
         self.tree.copy_global_to(guild=self.server)
         await self.tree.sync(guild=self.server)
 
