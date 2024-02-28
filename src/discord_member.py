@@ -14,7 +14,7 @@ def from_id(member_id: int, guild: discord.Guild):
 class DiscordMember:
     def __init__(self, member: Union[discord.Member, discord.User]):
         if isinstance(member, discord.User):
-            raise ValueError('Someone from outside the server tried to join the game?')
+            raise ValueError("Someone from outside the server tried to join the game?")
         self.member = member
 
     async def send(self, message) -> None:

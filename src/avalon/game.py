@@ -17,9 +17,6 @@ class Game:
     def __init__(
         self, members: Sequence[DiscordMemberInterface], role_names: Sequence[str]
     ):
-        members, role_names = list(members), list(role_names)
-        random.shuffle(members)
-        random.shuffle(role_names)
         self.players = [
             Player(member, role_factory.from_name(role_name))
             for member, role_name in zip(members, role_names)
@@ -31,3 +28,12 @@ class Game:
 
     def display_turn_order(self) -> str:
         return "\n ".join([player.name for player in self.players])
+
+
+def start_game(
+    members: Sequence[DiscordMemberInterface], role_names: Sequence[str]
+) -> Game:
+    members, role_names = list(members), list(role_names)
+    random.shuffle(members)
+    random.shuffle(role_names)
+    return Game(members, role_names)

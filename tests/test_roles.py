@@ -10,7 +10,6 @@ from tests.mock_discord_member import MockDiscordMember
 
 
 def test_info():
-    random.seed(11)
     game = Game(
         members=[
             MockDiscordMember(name)
@@ -26,12 +25,12 @@ def test_info():
     )
 
     expectations = {
-        "Colin": "You are Percival. "
-        + "Emily and Dan are Merlin and Morgana, but you know not who is who...",
         "Albert": "You are a Loyal Servant of King Arthur of Britain. You don't know anything.",
-        "Bernard": "You are a Loathsome Minion of Mordred. You know that Emily is your dark ally.",
-        "Emily": "You are Morgana. You know that Bernard is your sinister accomplice.",
-        "Dan": "You are Merlin. Bernard and Emily are Evil.",
+        "Bernard": "You are Merlin. Colin and Dan are Evil.",
+        "Colin": "You are a Loathsome Minion of Mordred. You know that Dan is your dark ally.",
+        "Dan": "You are Morgana. You know that Colin is your sinister accomplice.",
+        "Emily": "You are Percival. "
+        + "Bernard and Dan are Merlin and Morgana, but you know not who is who...",
     }
 
     output = {player.name: info for player, info in game.get_info()}

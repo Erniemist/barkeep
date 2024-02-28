@@ -1,6 +1,6 @@
 import discord
 
-from src.avalon.game import Game
+from src.avalon.game import Game, start_game
 from src.discord_member import DiscordMember
 
 MINIMUM_ROLES = 5
@@ -90,7 +90,7 @@ class StartGameView(discord.ui.View):
     @discord.ui.button(label="start", disabled=True)
     async def start(self, interaction: discord.Interaction, _):
         members = [DiscordMember(member) for member in self.select_players.values]
-        game = Game(members, self.select_roles.values)
+        game = start_game(members, self.select_roles.values)
         await interaction.response.send_message(
             f"The turn order is\n{game.display_turn_order()}"
         )
