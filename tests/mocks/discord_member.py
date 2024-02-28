@@ -1,5 +1,5 @@
-class MockDiscordMember:
-    def __init__(self, player_name, member_id=0):
+class DiscordMember:
+    def __init__(self, player_name="NAME", member_id=0):
         self.player_name = player_name
         self.member_id = member_id
 

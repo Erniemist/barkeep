@@ -1,24 +1,10 @@
-from discord import app_commands
-
 import discord
 
 from src import utilities, suggestions
+from src.discord.client.client import Client
 from src.drink import get_drink_repository
 from src.avalon.game import Game
 from src.avalon.start_game_view import StartGameView
-
-
-class Client(discord.Client):
-    def __init__(self, *, intents: discord.Intents):
-        super().__init__(intents=intents)
-        self.tree = app_commands.CommandTree(self)
-        with open("server_id.txt", mode="r", encoding="utf-8") as file:
-            server_id = file.readline().strip()
-        self.server = discord.Object(id=server_id)
-
-    async def setup_hook(self):
-        self.tree.copy_global_to(guild=self.server)
-        await self.tree.sync(guild=self.server)
 
 
 client = Client(intents=discord.Intents.default())

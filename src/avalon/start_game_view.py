@@ -1,7 +1,7 @@
 import discord
 
 from src.avalon.game import Game, start_game
-from src.discord_member import DiscordMember
+from src.discord.member.discord_member import DiscordMember
 
 MINIMUM_ROLES = 5
 

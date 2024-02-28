@@ -4,13 +4,13 @@ from src.avalon.Roles.merlin import Merlin
 from src.avalon.Roles.minion import Minion
 from src.avalon.Roles.morgana import Morgana
 from src.avalon.Roles.percival import Percival
-from tests.mock_discord_member import MockDiscordMember
+from tests.mocks.discord_member import DiscordMember
 
 
 def test_info():
     game = Game(
         members=[
-            MockDiscordMember(name)
+            DiscordMember(name)
             for name in ["Albert", "Bernard", "Colin", "Dan", "Emily"]
         ],
         role_names=[
