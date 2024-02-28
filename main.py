@@ -3,7 +3,7 @@ import discord
 from src import utilities, suggestions
 from src.discord.client.client import Client
 from src.drink import get_drink_repository
-from src.avalon.game import Game
+from src.avalon.game import Game, load_game
 from src.avalon.start_game_view import StartGameView
 
 
@@ -49,6 +49,14 @@ async def start_game(interaction: discord.Interaction):
             color=discord.Color.light_embed(),
         ),
     )
+
+
+@client.tree.command()
+async def check_turn_order(interaction: discord.Interaction):
+    """Check the turn order. Unaware of next quest sender"""
+    with open('data/avalon/game.json', 'r', encoding='utf-8') as file:
+        game = await load_game(client, file.readline())
+        await interaction.response.send_message(game.display_turn_order())
 
 
 with open("token.txt", mode="r", encoding="utf-8") as f:

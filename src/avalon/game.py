@@ -47,12 +47,12 @@ def start_game(
     return game
 
 
-def load_game(
+async def load_game(
     client: Client,
     game_data: str,
 ) -> Game:
     players = json.loads(game_data)["players"]
     return Game(
-        [client.find_member(player["member_id"]) for player in players],
+        [await client.find_member(player["member_id"]) for player in players],
         [player["role"] for player in players],
     )

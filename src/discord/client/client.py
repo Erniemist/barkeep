@@ -19,8 +19,8 @@ class Client(discord.Client):
         self.tree.copy_global_to(guild=self.server)
         await self.tree.sync(guild=self.server)
 
-    def find_member(self, member_id: int) -> DiscordMemberInterface:
-        member = self.server.get_member(member_id)  # pylint: disable=no-member
+    async def find_member(self, member_id: int) -> DiscordMemberInterface:
+        member = await self.server.fetch_member(member_id)  # pylint: disable=no-member
         if member is None:
             raise ValueError(f"Couldn't find member {member_id}")
         return DiscordMember(member)
