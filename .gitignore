@@ -2,3 +2,4 @@ data/suggestions.txt
 token.txt
 .idea/*
 server_id.txt
+.env

@@ -1,9 +1,8 @@
 import discord
 
 from src.avalon.game import Game, start_game
+from src.config import MIN_PLAYERS
 from src.discord.member.discord_member import DiscordMember
-
-MINIMUM_ROLES = 5
 
 
 class StartGameView(discord.ui.View):
@@ -52,7 +51,7 @@ class StartGameView(discord.ui.View):
     @discord.ui.select(
         cls=discord.ui.Select,
         options=[discord.SelectOption(label=role, value=role) for role in Game.ROLES],
-        min_values=MINIMUM_ROLES,
+        min_values=MIN_PLAYERS,
         max_values=len(Game.ROLES),
     )
     async def select_roles(self, interaction: discord.Interaction, _):
@@ -76,7 +75,7 @@ class StartGameView(discord.ui.View):
     def should_disable_button(self):
         if len(self.select_roles.values) != len(self.select_players.values):
             return True
-        if len(self.select_roles.values) < MINIMUM_ROLES:
+        if len(self.select_roles.values) < MIN_PLAYERS:
             return True
         return False
 
