@@ -17,8 +17,9 @@ class Game:
     def __init__(
         self, members: Sequence[DiscordMemberInterface], role_names: Sequence[str]
     ):
-        random.shuffle(list(members))
-        random.shuffle(list(role_names))
+        members, role_names = list(members), list(role_names)
+        random.shuffle(members)
+        random.shuffle(role_names)
         self.players = [
             Player(member, role_factory.from_name(role_name))
             for member, role_name in zip(members, role_names)
