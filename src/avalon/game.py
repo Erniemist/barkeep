@@ -1,3 +1,4 @@
+import json
 import random
 from typing import Generator, Sequence
 
@@ -30,7 +31,7 @@ class Game:
         return "\n ".join([player.name for player in self.players])
 
     def to_json(self) -> str:
-        return f'{{"players": [{', '.join(player.to_json() for player in self.players)}]}}'
+        return json.dumps({"players": [player.to_dict() for player in self.players]})
 
 
 def start_game(
