@@ -41,7 +41,10 @@ def start_game(
     members, role_names = list(members), list(role_names)
     random.shuffle(members)
     random.shuffle(role_names)
-    return Game(members, role_names)
+    game = Game(members, role_names)
+    with open('data/avalon/game.json', 'w') as file:
+        file.write(game.to_json())
+    return game
 
 
 def load_game(
