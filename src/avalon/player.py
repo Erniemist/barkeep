@@ -15,3 +15,6 @@ class Player:
 
     def is_evil(self):
         return self.role.is_evil()
+
+    def to_json(self) -> str:
+        return f'{{"member_id": {self.discord_member.get_id()}, "role": "{self.role.name}"}}'

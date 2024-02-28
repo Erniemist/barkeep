@@ -20,7 +20,7 @@ class DiscordMember:
     async def send(self, message) -> None:
         await self.member.send(message)
 
-    def get_id(self):
+    def get_id(self) -> int:
         return self.member.id
 
     def name(self) -> str:

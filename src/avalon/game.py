@@ -29,6 +29,9 @@ class Game:
     def display_turn_order(self) -> str:
         return "\n ".join([player.name for player in self.players])
 
+    def to_json(self) -> str:
+        return f'{{"players": [{', '.join(player.to_json() for player in self.players)}]}}'
+
 
 def start_game(
     members: Sequence[DiscordMemberInterface], role_names: Sequence[str]
