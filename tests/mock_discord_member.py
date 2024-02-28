@@ -1,7 +1,7 @@
 class MockDiscordMember:
-    def __init__(self, player_name, id=0):
+    def __init__(self, player_name, member_id=0):
         self.player_name = player_name
-        self.id = id
+        self.member_id = member_id
 
     async def send(self, message) -> None:
         pass
@@ -10,4 +10,4 @@ class MockDiscordMember:
         return self.player_name
 
     def get_id(self) -> int:
-        return self.id
+        return self.member_id

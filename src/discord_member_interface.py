@@ -7,5 +7,6 @@ class DiscordMemberInterface(Protocol):
 
     def name(self) -> str:
         raise NotImplementedError
+
     def get_id(self) -> int:
         raise NotImplementedError
