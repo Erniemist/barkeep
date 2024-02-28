@@ -1,5 +1,3 @@
-import random
-
 from src.avalon.game import Game
 from src.avalon.Roles.loyal_servant import LoyalServant
 from src.avalon.Roles.merlin import Merlin
