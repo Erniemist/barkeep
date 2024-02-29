@@ -1,5 +1,3 @@
-from dataclasses import dataclass
-
 import discord
 
 from src.avalon.Roles.loyal_servant import LoyalServant
