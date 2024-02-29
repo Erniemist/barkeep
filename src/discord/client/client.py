@@ -1,6 +1,7 @@
 import discord
 from discord import app_commands
 
+from src.config import SERVER_ID
 from src.discord.member.discord_member import DiscordMember
 from src.discord.member.discord_member_interface import DiscordMemberInterface
 
@@ -13,9 +14,7 @@ class Client(discord.Client):
         self.tree = app_commands.CommandTree(self)
 
     async def setup_hook(self):
-        with open("server_id.txt", mode="r", encoding="utf-8") as file:
-            server_id = file.readline().strip()
-        self.server = await self.fetch_guild(int(server_id))
+        self.server = await self.fetch_guild(int(SERVER_ID))
         self.tree.copy_global_to(guild=self.server)
         await self.tree.sync(guild=self.server)
 

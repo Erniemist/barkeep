@@ -1,6 +1,7 @@
 import discord
 
 from src import utilities, suggestions
+from src.config import DISCORD_TOKEN
 from src.discord.client.client import Client
 from src.drink import get_drink_repository
 from src.avalon.game import Game, load_game
@@ -59,6 +60,4 @@ async def check_turn_order(interaction: discord.Interaction):
         await interaction.response.send_message(game.display_turn_order())
 
 
-with open("token.txt", mode="r", encoding="utf-8") as f:
-    token = f.readline().strip()
-client.run(token)
+client.run(DISCORD_TOKEN)

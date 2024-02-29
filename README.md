@@ -3,5 +3,6 @@ A bot to serve drinks
 
 ## Setup
 1) `pip install -r requirements.txt`
-2) Create `token.txt` and add your bot's token.
-3) Create `server_id.txt` and add your discord server id.
+2) `cp .env.example .env`
+   - Set `TOKEN` to your bot's token
+   - Set `SERVER_ID` to your discord server id
