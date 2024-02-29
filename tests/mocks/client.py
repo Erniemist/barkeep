@@ -3,5 +3,5 @@ from tests.mocks.discord_member import DiscordMember
 
 
 class Client:
-    def find_member(self, member_id: int) -> DiscordMemberInterface:
+    async def find_member(self, member_id: int) -> DiscordMemberInterface:
         return DiscordMember(member_id=member_id)

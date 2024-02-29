@@ -1,3 +1,5 @@
+import pytest
+
 from src.avalon.Roles.loyal_servant import LoyalServant
 from src.avalon.Roles.merlin import Merlin
 from src.avalon.game import Game, load_game
@@ -23,10 +25,11 @@ def test_storing():
     assert actual == expected, actual
 
 
-def test_loading():
+@pytest.mark.asyncio
+async def test_loading():
     game_data = '{"players": [{"member_id": 1, "role": "Merlin"}, {"member_id": 2, "role": "Loyal Servant"}]}'  # pylint: disable=line-too-long
 
-    game = load_game(Client(), game_data)
+    game = await load_game(Client(), game_data)
 
     alice = game.players[0]
     assert alice.discord_member.get_id() == 1
