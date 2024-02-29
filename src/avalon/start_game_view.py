@@ -9,14 +9,15 @@ from src.discord.member.discord_member import DiscordMember
 
 class StartGameView(discord.ui.View):
     def __init__(self, roles: list[str]):
+        labels = (
+            roles
+            + ["Additional Loyal Servant"] * 3
+            + ["Additional Minion of Mordred"] * 2
+        )
+        values = roles + [LoyalServant.name] * 3 + [Minion.name] * 2
         self.roles = [
             discord.SelectOption(label=label, value=value)
-            for label, value in zip(
-                roles
-                + ["Additional Loyal Servant"] * 3
-                + ["Additional Minion of Mordred"] * 2,
-                roles + [LoyalServant.name] * 3 + [Minion.name] * 2,
-            )
+            for label, value in zip(labels, values)
         ]
         super().__init__()
 
