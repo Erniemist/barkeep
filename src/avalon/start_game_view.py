@@ -1,40 +1,23 @@
 import discord
 
+from src.avalon.Roles.loyal_servant import LoyalServant
+from src.avalon.Roles.minion import Minion
 from src.avalon.game import Game, start_game
 from src.config import MIN_PLAYERS
 from src.discord.member.discord_member import DiscordMember
 
 
 class StartGameView(discord.ui.View):
-    def __init__(self, roles: list):
-        self.roles = [discord.SelectOption(label=role, value=role) for role in roles]
-        self.roles.append(
-            discord.SelectOption(
-                label="Additional Loyal Servant", value="Loyal Servant"
+    def __init__(self, roles: list[str]):
+        self.roles = [
+            discord.SelectOption(label=label, value=value)
+            for label, value in zip(
+                roles
+                + ["Additional Loyal Servant"] * 3
+                + ["Additional Minion of Mordred"] * 2,
+                roles + [LoyalServant.name] * 3 + [Minion.name] * 2,
             )
-        )
-        self.roles.append(
-            discord.SelectOption(
-                label="Additional Loyal Servant", value="Loyal Servant"
-            )
-        )
-        self.roles.append(
-            discord.SelectOption(
-                label="Additional Loyal Servant", value="Loyal Servant"
-            )
-        )
-        self.roles.append(
-            discord.SelectOption(
-                label="Additional Minion of Mordred",
-                value="Loathsome Minion of Mordred",
-            )
-        )
-        self.roles.append(
-            discord.SelectOption(
-                label="Additional Minion of Mordred",
-                value="Loathsome Minion of Mordred",
-            )
-        )
+        ]
         super().__init__()
 
     @discord.ui.select(cls=discord.ui.UserSelect, max_values=12)
