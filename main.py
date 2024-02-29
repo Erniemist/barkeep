@@ -1,22 +1,11 @@
-from discord import app_commands
-
 import discord
 
 from src import utilities, suggestions
+from src.config import DISCORD_TOKEN
+from src.discord.client.client import Client
 from src.drink import get_drink_repository
-
-
-class Client(discord.Client):
-    def __init__(self, *, intents: discord.Intents):
-        super().__init__(intents=intents)
-        self.tree = app_commands.CommandTree(self)
-        with open("server_id.txt", mode="r", encoding="utf-8") as file:
-            server_id = file.readline().strip()
-        self.server = discord.Object(id=server_id)
-
-    async def setup_hook(self):
-        self.tree.copy_global_to(guild=self.server)
-        await self.tree.sync(guild=self.server)
+from src.avalon.game import Game, load_game
+from src.avalon.start_game_view import StartGameView
 
 
 client = Client(intents=discord.Intents.default())
@@ -49,6 +38,26 @@ async def suggest(interaction: discord.Interaction, suggestion: str):
     await interaction.response.send_message("I'll take a note of that.")
 
 
-with open("token.txt", mode="r", encoding="utf-8") as f:
-    token = f.readline().strip()
-client.run(token)
+@client.tree.command()
+async def start_game(interaction: discord.Interaction):
+    """Start a game of avalon"""
+    await interaction.response.send_message(
+        "",
+        view=StartGameView(Game.ROLES),
+        embed=discord.Embed(
+            title="Roles",
+            description="No roles selected",
+            color=discord.Color.light_embed(),
+        ),
+    )
+
+
+@client.tree.command()
+async def check_turn_order(interaction: discord.Interaction):
+    """Check the turn order. Unaware of next quest sender"""
+    with open("data/avalon/game.json", "r", encoding="utf-8") as file:
+        game = await load_game(client, file.readline())
+        await interaction.response.send_message(game.display_turn_order())
+
+
+client.run(DISCORD_TOKEN)
