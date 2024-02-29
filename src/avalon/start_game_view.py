@@ -1,3 +1,5 @@
+from dataclasses import dataclass
+
 import discord
 
 from src.avalon.Roles.loyal_servant import LoyalServant
@@ -9,15 +11,14 @@ from src.discord.member.discord_member import DiscordMember
 
 class StartGameView(discord.ui.View):
     def __init__(self, roles: list[str]):
-        labels = (
-            roles
-            + ["Additional Loyal Servant"] * 3
-            + ["Additional Minion of Mordred"] * 2
-        )
-        values = roles + [LoyalServant.name] * 3 + [Minion.name] * 2
         self.roles = [
-            discord.SelectOption(label=label, value=value)
-            for label, value in zip(labels, values)
+            discord.SelectOption(label=role, value=role) for role in roles
+        ] + [
+            discord.SelectOption(label=LoyalServant.name, value=LoyalServant.name),
+            discord.SelectOption(label=LoyalServant.name, value=LoyalServant.name),
+            discord.SelectOption(label=LoyalServant.name, value=LoyalServant.name),
+            discord.SelectOption(label=Minion.name, value=Minion.name),
+            discord.SelectOption(label=Minion.name, value=Minion.name),
         ]
         super().__init__()
 
