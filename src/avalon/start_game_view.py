@@ -12,18 +12,18 @@ from src.discord.member.discord_member import DiscordMember
 
 class StartGameView(discord.ui.View):
     ROLES = {
-        "Loyal Servant": LoyalServant.name ,
-        "Morgana" : Morgana.name,
-        "Merlin" : Merlin.name,
-        "Percival" : Percival.name,
-        "Minion" : Minion.name,
+        "Loyal Servant": LoyalServant.name,
+        "Morgana": Morgana.name,
+        "Merlin": Merlin.name,
+        "Percival": Percival.name,
+        "Minion": Minion.name,
         "Loyal Servant 2": LoyalServant.name,
         "Loyal Servant 3": LoyalServant.name,
         "Loyal Servant 4": LoyalServant.name,
-        "Minion1": Minion.name,
-        "Minion2": Minion.name,
+        "Minion 1": Minion.name,
+        "Minion 2": Minion.name,
+    }
 
-        }
     @discord.ui.select(cls=discord.ui.UserSelect, max_values=12)
     async def select_players(self, interaction: discord.Interaction, _):
         await interaction.response.defer()
