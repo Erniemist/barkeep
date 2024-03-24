@@ -5,17 +5,11 @@ from typing import Generator, Sequence
 from src.discord.client.client import Client
 from src.avalon.player import Player
 from src.avalon.Roles import role_factory
-from src.avalon.Roles.loyal_servant import LoyalServant
-from src.avalon.Roles.merlin import Merlin
-from src.avalon.Roles.minion import Minion
-from src.avalon.Roles.morgana import Morgana
-from src.avalon.Roles.percival import Percival
+
 from src.discord.member.discord_member_interface import DiscordMemberInterface
 
 
 class Game:
-    ROLES = [LoyalServant.name, Morgana.name, Merlin.name, Percival.name, Minion.name]
-
     def __init__(
         self, members: Sequence[DiscordMemberInterface], role_names: Sequence[str]
     ):

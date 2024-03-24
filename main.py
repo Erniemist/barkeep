@@ -4,7 +4,7 @@ from src import utilities, suggestions
 from src.config import DISCORD_TOKEN
 from src.discord.client.client import Client
 from src.drink import get_drink_repository
-from src.avalon.game import Game, load_game
+from src.avalon.game import load_game
 from src.avalon.start_game_view import StartGameView
 
 
@@ -43,7 +43,7 @@ async def start_game(interaction: discord.Interaction):
     """Start a game of avalon"""
     await interaction.response.send_message(
         "",
-        view=StartGameView(Game.ROLES),
+        view=StartGameView(),
         embed=discord.Embed(
             title="Roles",
             description="No roles selected",
