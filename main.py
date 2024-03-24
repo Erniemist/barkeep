@@ -5,8 +5,6 @@ from src.avalon.commands import start_game, check_turn_order
 from src.config import DISCORD_TOKEN, AVALON_ENABLED
 from src.discord.client.client import Client
 from src.drink import get_drink_repository
-from src.avalon.game import load_game
-from src.avalon.start_game_view import StartGameView
 
 
 client = Client(intents=discord.Intents.default())

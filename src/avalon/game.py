@@ -8,6 +8,7 @@ from src.avalon.Roles import role_factory
 from src.discord.member.discord_member_interface import DiscordMemberInterface
 from src.discord.client.client_interface import ClientInterface
 
+
 class Game:
     def __init__(
         self, members: Sequence[DiscordMemberInterface], role_names: Sequence[str]

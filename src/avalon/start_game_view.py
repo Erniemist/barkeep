@@ -37,7 +37,7 @@ class StartGameView(discord.ui.View):
 
     @discord.ui.select(
         cls=discord.ui.Select,
-        options=[discord.SelectOption(label=name, value=name) for name,role in ROLES.items()],
+        options=[discord.SelectOption(label=name, value=name) for name in ROLES.keys()],
         min_values=MIN_PLAYERS,
         max_values=len(ROLES),
     )
@@ -76,7 +76,9 @@ class StartGameView(discord.ui.View):
     @discord.ui.button(label="start", disabled=True)
     async def start(self, interaction: discord.Interaction, _):
         members = [DiscordMember(member) for member in self.select_players.values]
-        game = start_game(members, self.select_roles.values)
+        game = start_game(
+            members, [StartGameView.ROLES[role] for role in self.select_roles.values]
+        )
         await interaction.response.send_message(
             f"The turn order is\n{game.display_turn_order()}"
         )
