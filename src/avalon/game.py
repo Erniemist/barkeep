@@ -2,12 +2,11 @@ import json
 import random
 from typing import Generator, Sequence
 
-from src.discord.client.client import Client
 from src.avalon.player import Player
 from src.avalon.Roles import role_factory
 
 from src.discord.member.discord_member_interface import DiscordMemberInterface
-
+from src.discord.client.client_interface import ClientInterface
 
 class Game:
     def __init__(
@@ -42,7 +41,7 @@ def start_game(
 
 
 async def load_game(
-    client: Client,
+    client: ClientInterface,
     game_data: str,
 ) -> Game:
     players = json.loads(game_data)["players"]
