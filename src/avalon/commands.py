@@ -1,6 +1,6 @@
 import discord
 
-from src.avalon.game import Game, load_game
+from src.avalon.game import load_game
 from src.avalon.start_game_view import StartGameView
 
 
