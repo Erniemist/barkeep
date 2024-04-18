@@ -16,5 +16,10 @@ class Player:
     def is_evil(self):
         return self.role.is_evil()
 
+    def other_evils(self, players: list[Self]):
+        return [
+            player.name for player in players if player.is_evil() and player != self
+        ]
+
     def to_dict(self) -> dict:
         return {"member_id": self.discord_member.get_id(), "role": self.role.name}

@@ -25,8 +25,8 @@ def test_info():
     expectations = {
         "Albert": "You are a Loyal Servant of King Arthur of Britain. You don't know anything.",
         "Bernard": "You are Merlin. Colin and Dan are Evil.",
-        "Colin": "You are a Loathsome Minion of Mordred. You know that Dan is your dark ally.",
-        "Dan": "You are Morgana. You know that Colin is your sinister accomplice.",
+        "Colin": "You are a Loathsome Minion of Mordred. Your dark allies are: Dan.",
+        "Dan": "You are Morgana. Your dark allies are: Colin.",
         "Emily": "You are Percival. "
         + "Bernard and Dan are Merlin and Morgana, but you know not who is who...",
     }
