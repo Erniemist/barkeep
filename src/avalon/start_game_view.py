@@ -1,24 +1,28 @@
 import discord
 
 from src.avalon.Roles.loyal_servant import LoyalServant
+from src.avalon.Roles.merlin import Merlin
 from src.avalon.Roles.minion import Minion
-from src.avalon.game import Game, start_game
+from src.avalon.Roles.morgana import Morgana
+from src.avalon.Roles.percival import Percival
+from src.avalon.game import start_game
 from src.config import MIN_PLAYERS
 from src.discord.member.discord_member import DiscordMember
 
 
 class StartGameView(discord.ui.View):
-    def __init__(self, roles: list[str]):
-        self.roles = [
-            discord.SelectOption(label=role, value=role) for role in roles
-        ] + [
-            discord.SelectOption(label=LoyalServant.name, value=LoyalServant.name),
-            discord.SelectOption(label=LoyalServant.name, value=LoyalServant.name),
-            discord.SelectOption(label=LoyalServant.name, value=LoyalServant.name),
-            discord.SelectOption(label=Minion.name, value=Minion.name),
-            discord.SelectOption(label=Minion.name, value=Minion.name),
-        ]
-        super().__init__()
+    ROLES = {
+        "Loyal Servant": LoyalServant.name,
+        "Morgana": Morgana.name,
+        "Merlin": Merlin.name,
+        "Percival": Percival.name,
+        "Minion": Minion.name,
+        "Loyal Servant 2": LoyalServant.name,
+        "Loyal Servant 3": LoyalServant.name,
+        "Loyal Servant 4": LoyalServant.name,
+        "Minion 1": Minion.name,
+        "Minion 2": Minion.name,
+    }
 
     @discord.ui.select(cls=discord.ui.UserSelect, max_values=12)
     async def select_players(self, interaction: discord.Interaction, _):
@@ -33,9 +37,9 @@ class StartGameView(discord.ui.View):
 
     @discord.ui.select(
         cls=discord.ui.Select,
-        options=[discord.SelectOption(label=role, value=role) for role in Game.ROLES],
+        options=[discord.SelectOption(label=name, value=name) for name in ROLES.keys()],
         min_values=MIN_PLAYERS,
-        max_values=len(Game.ROLES),
+        max_values=len(ROLES),
     )
     async def select_roles(self, interaction: discord.Interaction, _):
         await interaction.response.defer()
@@ -52,7 +56,7 @@ class StartGameView(discord.ui.View):
         if interaction.message is None:
             raise RuntimeError("No message found on start game interaction")
         embed = interaction.message.embeds[0]
-        embed.description = f"You have selected {", ".join(self.select_roles.values)}"
+        embed.description = f"You have selected {', '.join(self.select_roles.values)}"
         return embed
 
     def should_disable_button(self):
@@ -72,7 +76,9 @@ class StartGameView(discord.ui.View):
     @discord.ui.button(label="start", disabled=True)
     async def start(self, interaction: discord.Interaction, _):
         members = [DiscordMember(member) for member in self.select_players.values]
-        game = start_game(members, self.select_roles.values)
+        game = start_game(
+            members, [StartGameView.ROLES[role] for role in self.select_roles.values]
+        )
         await interaction.response.send_message(
             f"The turn order is\n{game.display_turn_order()}"
         )

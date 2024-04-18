@@ -1,4 +1,5 @@
 data/suggestions.txt
 data/avalon
+!data/avalon/.placeholder
 .idea/*
 .env
