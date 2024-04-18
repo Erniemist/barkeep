@@ -1,22 +1,10 @@
-from discord import app_commands
-
 import discord
 
 from src import utilities, suggestions
+from src.avalon.commands import start_game, check_turn_order
+from src.config import DISCORD_TOKEN, AVALON_ENABLED
+from src.discord.client.client import Client
 from src.drink import get_drink_repository
-
-
-class Client(discord.Client):
-    def __init__(self, *, intents: discord.Intents):
-        super().__init__(intents=intents)
-        self.tree = app_commands.CommandTree(self)
-        with open("server_id.txt", mode="r", encoding="utf-8") as file:
-            server_id = file.readline().strip()
-        self.server = discord.Object(id=server_id)
-
-    async def setup_hook(self):
-        self.tree.copy_global_to(guild=self.server)
-        await self.tree.sync(guild=self.server)
 
 
 client = Client(intents=discord.Intents.default())
@@ -49,6 +37,7 @@ async def suggest(interaction: discord.Interaction, suggestion: str):
     await interaction.response.send_message("I'll take a note of that.")
 
 
-with open("token.txt", mode="r", encoding="utf-8") as f:
-    token = f.readline().strip()
-client.run(token)
+if AVALON_ENABLED:
+    client.tree.add_command(start_game)  # type: ignore
+    client.tree.add_command(check_turn_order)  # type: ignore
+client.run(DISCORD_TOKEN)

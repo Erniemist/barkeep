@@ -1,4 +1,5 @@
 data/suggestions.txt
-token.txt
+data/avalon
+!data/avalon/.placeholder
 .idea/*
-server_id.txt
+.env
