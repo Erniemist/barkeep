@@ -1,4 +1,9 @@
+from __future__ import annotations
 from abc import ABC
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from src.avalon.player import Player
 
 
 class Role(ABC):
@@ -7,7 +12,7 @@ class Role(ABC):
     GOOD = "good"
     EVIL = "evil"
 
-    def info(self, players, player) -> str:
+    def info(self, players: list[Player], player: Player) -> str:
         raise NotImplemented
 
     def is_evil(self):

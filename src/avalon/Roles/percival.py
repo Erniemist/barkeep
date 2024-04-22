@@ -1,6 +1,9 @@
-from typing import List
+from __future__ import annotations
+from typing import TYPE_CHECKING
 
-from src.avalon.player import Player
+if TYPE_CHECKING:
+    from src.avalon.player import Player
+
 from src.avalon.Roles.role import Role
 
 
@@ -8,7 +11,7 @@ class Percival(Role):
     team = Role.GOOD
     name = "Percival"
 
-    def info(self, players: List[Player], player: Player) -> str:
+    def info(self, players: list[Player], player: Player) -> str:
         wizards = [
             player.name
             for player in players

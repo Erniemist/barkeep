@@ -1,9 +1,14 @@
+from __future__ import annotations
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from src.avalon.Roles.role import Role
+
 from src.avalon.Roles.loyal_servant import LoyalServant
 from src.avalon.Roles.merlin import Merlin
 from src.avalon.Roles.minion import Minion
 from src.avalon.Roles.morgana import Morgana
 from src.avalon.Roles.percival import Percival
-from src.avalon.Roles.role import Role
 
 
 def from_name(name: str) -> Role:
