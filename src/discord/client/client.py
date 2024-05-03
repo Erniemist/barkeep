@@ -1,13 +1,11 @@
 from __future__ import annotations
 from typing import TYPE_CHECKING
+from src.config import SERVER_ID
+from src.discord.member.discord_member import DiscordMember
+import discord
 
 if TYPE_CHECKING:
     from src.discord.member.discord_member_interface import DiscordMemberInterface
-
-import discord
-from discord import app_commands
-from src.config import SERVER_ID
-from src.discord.member.discord_member import DiscordMember
 
 
 class Client(discord.Client):
@@ -15,7 +13,7 @@ class Client(discord.Client):
 
     def __init__(self, *, intents: discord.Intents):
         super().__init__(intents=intents)
-        self.tree = app_commands.CommandTree(self)
+        self.tree = discord.app_commands.CommandTree(self)
 
     async def setup_hook(self):
         self.server = await self.fetch_guild(int(SERVER_ID))
