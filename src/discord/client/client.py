@@ -1,9 +1,13 @@
+from __future__ import annotations
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from src.discord.member.discord_member_interface import DiscordMemberInterface
+
 import discord
 from discord import app_commands
-
 from src.config import SERVER_ID
 from src.discord.member.discord_member import DiscordMember
-from src.discord.member.discord_member_interface import DiscordMemberInterface
 
 
 class Client(discord.Client):

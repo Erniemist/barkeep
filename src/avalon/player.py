@@ -1,7 +1,9 @@
-from typing import Self
+from __future__ import annotations
+from typing import TYPE_CHECKING
 
-from src.avalon.Roles.role import Role
-from src.discord.member.discord_member_interface import DiscordMemberInterface
+if TYPE_CHECKING:
+    from src.avalon.Roles.role import Role
+    from src.discord.member.discord_member_interface import DiscordMemberInterface
 
 
 class Player:
@@ -10,13 +12,13 @@ class Player:
         self.role = role
         self.name = member.name()
 
-    def info(self, players: list[Self]):
+    def info(self, players: list[Player]):
         return self.role.info(players, self)
 
     def is_evil(self):
         return self.role.is_evil()
 
-    def other_evils(self, players: list[Self]):
+    def other_evils(self, players: list[Player]):
         return [
             player.name for player in players if player.is_evil() and player != self
         ]
