@@ -11,6 +11,7 @@ class Player:
         self.discord_member = member
         self.role = role
         self.name = member.name()
+        self.discord_id = member.get_id()
 
     def info(self, players: list[Player]):
         return self.role.info(players, self)
