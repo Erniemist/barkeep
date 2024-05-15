@@ -75,8 +75,12 @@ class StartGameView(discord.ui.View):
 
     @discord.ui.button(label="start", disabled=True)
     async def start(self, interaction: discord.Interaction, _):
-        await start_game(
-            interaction,
-            [DiscordMember(member) for member in self.select_players.values],
-            [StartGameView.ROLES[role] for role in self.select_roles.values],
+        members = [DiscordMember(member) for member in self.select_players.values]
+        game = start_game(
+            members, [StartGameView.ROLES[role] for role in self.select_roles.values]
         )
+        await interaction.response.send_message(
+            f"The turn order is\n{game.display_turn_order()}"
+        )
+        for player, info in game.get_info():
+            await player.discord_member.send(info)
