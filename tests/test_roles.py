@@ -1,4 +1,4 @@
-from src.avalon.game import make_players
+from src.avalon.game import Game
 from src.avalon.Roles.loyal_servant import LoyalServant
 from src.avalon.Roles.merlin import Merlin
 from src.avalon.Roles.minion import Minion
@@ -8,7 +8,7 @@ from tests.mocks.discord_member import DiscordMember
 
 
 def test_info():
-    players = make_players(
+    game = Game(
         members=[
             DiscordMember(name)
             for name in ["Albert", "Bernard", "Colin", "Dan", "Emily"]
@@ -31,6 +31,6 @@ def test_info():
         + "Bernard and Dan are Merlin and Morgana, but you know not who is who...",
     }
 
-    output = {player.name: player.info(players) for player in players}
+    output = {player.name: info for player, info in game.get_info()}
 
     assert expectations == output, output
