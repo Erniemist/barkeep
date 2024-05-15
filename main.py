@@ -40,4 +40,5 @@ async def suggest(interaction: discord.Interaction, suggestion: str):
 if AVALON_ENABLED:
     client.tree.add_command(start_game)  # type: ignore
     client.tree.add_command(check_turn_order)  # type: ignore
+
 client.run(DISCORD_TOKEN)
