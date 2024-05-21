@@ -1,7 +1,9 @@
 import discord
 
 from src import utilities, suggestions
-from src.avalon.commands import start_game, check_turn_order
+from src.avalon import proposal_view
+from src.avalon.game import load_players, display_turn_order
+from src.avalon.start_game_view import StartGameView
 from src.config import DISCORD_TOKEN, AVALON_ENABLED
 from src.discord.client.client import Client
 from src.drink import get_drink_repository
@@ -38,7 +40,31 @@ async def suggest(interaction: discord.Interaction, suggestion: str):
 
 
 if AVALON_ENABLED:
-    client.tree.add_command(start_game)  # type: ignore
-    client.tree.add_command(check_turn_order)  # type: ignore
+    @client.tree.command()
+    async def start_game(interaction: discord.Interaction):
+        """Start a game of avalon"""
+        await interaction.response.send_message(
+            "",
+            view=StartGameView(),
+            embed=discord.Embed(
+                title="Roles",
+                description="No roles selected",
+                color=discord.Color.light_embed(),
+            ),
+        )
+
+
+    @client.tree.command()
+    async def propose_quest(interaction: discord.Interaction):
+        """Propose a quest"""
+        view = await proposal_view.make(interaction.client)
+        await interaction.response.send_message(view=view)
+
+
+    @client.tree.command()
+    async def check_turn_order(interaction: discord.Interaction):
+        """Check the turn order. Unaware of next quest sender"""
+        players = await load_players(interaction.client)
+        await display_turn_order(interaction, players)
 
 client.run(DISCORD_TOKEN)
