@@ -1,13 +1,11 @@
 import discord
-
-from src.avalon.game import load_game
+from src.avalon import proposal_view
+from src.avalon.game import load_players, display_turn_order
 from src.avalon.start_game_view import StartGameView
 
 
-@discord.app_commands.command()
-async def start_game(interaction: discord.Interaction):
-    """Start a game of avalon"""
-    await interaction.response.send_message(
+async def avalon_start_game(interaction: discord.Interaction):
+    return interaction.response.send_message(
         "",
         view=StartGameView(),
         embed=discord.Embed(
@@ -18,9 +16,13 @@ async def start_game(interaction: discord.Interaction):
     )
 
 
-@discord.app_commands.command()
-async def check_turn_order(interaction: discord.Interaction):
+async def avalon_propose_quest(interaction: discord.Interaction):
+    """Propose a quest"""
+    view = await proposal_view.make(interaction.client)
+    await interaction.response.send_message(view=view)
+
+
+async def avalon_check_turn_order(interaction: discord.Interaction):
     """Check the turn order. Unaware of next quest sender"""
-    with open("data/avalon/game.json", "r", encoding="utf-8") as file:
-        game = await load_game(interaction.client, file.readline())
-        await interaction.response.send_message(game.display_turn_order())
+    players = await load_players(interaction.client)
+    await display_turn_order(interaction, players)
