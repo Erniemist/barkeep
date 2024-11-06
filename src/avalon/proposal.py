@@ -11,13 +11,7 @@ async def submit_proposal(interaction: Interaction, player_ids: list[str]):
         if str(player.discord_id) in player_ids
     ]
 
-    store_questers(questers)
-
     await display(interaction, questers)
-
-
-def store_questers(questers: list[Player]):
-    pass
 
 
 async def display(interaction: Interaction, questers: list[Player]) -> None:

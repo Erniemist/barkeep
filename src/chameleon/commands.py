@@ -22,14 +22,6 @@ async def see_wordsets(interaction: discord.Interaction):
 
 
 async def update_wordsets(interaction: discord.Interaction, set_code: str, words: str):
-    try:
-        await add_wordset(set_code, words)
-        await send_message(interaction.channel, f"Added {set_code}")
-    except Exception as e:
-        await send_message(interaction.channel, f"Failed to add {set_code}: {repr(e)}")
-
-
-async def add_wordset(set_code: str, words: str):
     with open("wordsets.txt", "r", encoding="utf-8") as f:
         wordsets = json.load(f)
 
@@ -37,6 +29,7 @@ async def add_wordset(set_code: str, words: str):
 
     with open("wordsets.txt", "w", encoding="utf-8") as f:
         json.dump(wordsets, f)
+    await send_message(interaction.channel, f"Added {set_code}")
 
 
 async def start_game(
